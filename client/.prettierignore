@@ -1,0 +1,8 @@
+# Files
+/node-modules/
+/dist/
+
+# Docs
+package.json
+package-lock.json
+*.lock
