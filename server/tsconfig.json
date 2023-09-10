@@ -1,18 +1,17 @@
 {
-    "compilerOptions": {
-      "target": "ES5",
-      "module": "CommonJS",
-      "rootDir": "./",
-      "outDir": "dist",
-      "esModuleInterop": true,
-      "forceConsistentCasingInFileNames": true,
-      "strict": true,
-      "skipLibCheck": true,
-      "moduleResolution": "node",
-      "sourceMap": true,
-      "removeComments": true
-    },
-    "lib": ["es6"],
-    "exclude": ["node_modules", "**/*.spec.ts"]
-  }
-  
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "CommonJS",
+    "rootDir": "./app",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "skipDefaultLibCheck": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "removeComments": true
+  },
+  "lib": ["es6"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}

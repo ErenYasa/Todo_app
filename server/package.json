@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "done dist/index.js",
+    "start:server": "nodemon app/index.ts",
+    "build:server": "tsc"
   },
   "keywords": [],
   "author": "",
@@ -21,6 +23,7 @@
     "dotenv": "^16.3.1",
     "helmet": "^7.0.0",
     "nodemon": "^3.0.1",
+    "ts-node": "^10.9.1",
     "typescript": "^5.2.2"
   }
 }
