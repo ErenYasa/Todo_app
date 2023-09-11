@@ -76,7 +76,7 @@ devDependencies:
     specifier: ^14.0.1
     version: 14.0.1
   prettier:
-    specifier: ^3.0.3
+    specifier: 3.0.3
     version: 3.0.3
   sass:
     specifier: ^1.66.1
