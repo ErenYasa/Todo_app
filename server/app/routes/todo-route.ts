@@ -10,13 +10,13 @@ import {
 
 const route = express.Router();
 
-route.get("/todo", getTodo);
+route.get("/todo/:id", getTodo);
 
 route.get("/todos", getAll);
 
 route.post("/todo", createTodo);
 
-route.patch("/todo/:id", updateTodo);
+route.put("/todo/:id", updateTodo);
 
 route.delete("/todo/:id", deleteTodo);
 

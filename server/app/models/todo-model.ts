@@ -7,7 +7,7 @@ const todoSchema = new mongoose.Schema({
   desc: { type: String, trim: true },
   date: {
     type: Date,
-    default: dayjs(),
+    default: new Date(),
   },
 });
 
