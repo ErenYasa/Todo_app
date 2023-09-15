@@ -1,0 +1,106 @@
+.modal {
+    border: none;
+
+    @include sm {
+        margin-top: 10%;
+    }
+
+    @include xxl {
+        margin-top: auto;
+    }
+
+    &::backdrop {
+        background: rgba($c-dark, 0.5);
+    }
+
+    .modal__header {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        margin-bottom: 1.5rem;
+
+        &__actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .header__actions__close__btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.8rem;
+            border-radius: 1.2rem;
+            border: 0.1rem solid $c-gray-tertiary;
+            background-color: $c-light;
+        }
+    }
+}
+
+.modal--std {
+    width: 95%;
+    margin-bottom: 0;
+    height: 75%;
+    border-top-left-radius: map-get($radius, "md");
+    border-top-right-radius: map-get($radius, "md");
+
+    @include sm {
+        width: 80%;
+        max-width: 60rem;
+        height: 40rem;
+        margin-bottom: auto;
+        border-bottom-left-radius: map-get($radius, "md");
+        border-bottom-right-radius: map-get($radius, "md");
+    }
+}
+
+.modal--confirm {
+    width: 30rem;
+    border-radius: map-get($radius, "md");
+
+    &__title {
+        margin-bottom: 2rem;
+        font-size: map-get($text-size, "md");
+    }
+
+    &__btn__group {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 2rem;
+    }
+}
+
+.modal--edit-todo {
+    .modal__body {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .edit-todo__label {
+        display: flex;
+
+        &__title,
+        &__desc {
+            width: 100%;
+            padding: 1.3rem;
+            border-radius: map-get($radius, "md");
+            background-color: $c-gray-tertiary;
+        }
+
+        &__title {
+            height: 5rem;
+        }
+
+        &__desc {
+            height: 15rem;
+        }
+    }
+
+    .edit-todo__save__btn {
+        @include sm {
+            width: max-content;
+            margin-left: auto;
+        }
+    }
+}

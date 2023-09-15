@@ -1,58 +1,64 @@
 /* colors */
-$c_primary: #124e90;
-$c_secondary: #ff5a5f;
-$c_secondary_dark: #3c64f4;
-$c_dark: #000000;
-$c_light: #ffffff;
-$c_gray: #9b9b9b;
-$c_gray_secondary: #f0eef2;
-$c_success: #48b89c;
-$c_error: #f67971;
+$c-primary: #2b6bec;
+$c-secondary: #ff5a5f;
+$c-secondary-dark: #3c64f4;
+$c-dark: #000000;
+$c-light: #ffffff;
+$c-gray: #9b9b9b;
+$c-gray-secondary: #dddddd;
+$c-gray-tertiary: #f0eef2;
+$c-success: #48b89c;
+$c-error: #f67971;
 
 /* radius */
 $radius: (
-  's': 0.5rem,
-  'm': 0.8rem,
-  'l': 1.2rem,
+    "xs": 0.3rem,
+    "sm": 0.5rem,
+    "md": 0.8rem,
+    "lg": 1.2rem,
 );
 
 /* text size */
 $text-size: (
-  's': 1.2rem,
-  'm': 1.4rem,
-  'l': 1.8rem,
+    "xs": 1.2rem,
+    "sm": 1.4rem,
+    "md": 1.8rem,
+    "lg": 2.5rem,
+    "xl": 3rem,
 );
 
 /* font-weight */
-$fw-light: 300;
-$fw-regular: 400;
-$fw-medium: 500;
-$fw-bold: 600;
+$font-weight: (
+    "light": 300,
+    "regular": 400,
+    "medium": 500,
+    "bold": 600,
+);
 
 /* breakpoints */
 $grid-breakpoints: (
-  'xs': 0,
-  'sm': 57.6rem,
-  'md': 76.8rem,
-  'lg': 102.4rem,
-  'xl': 128rem,
-  'xxl': 153.6rem,
+    "xs": 0,
+    "sm": 576px,
+    "md": 768px,
+    "lg": 1024px,
+    "xl": 1280px,
+    "xxl": 1536px,
 );
 
 $container-max-widths: (
-  'sm': 57.6rem,
-  'md': 76.8rem,
-  'lg': 102.4rem,
-  'xl': 128rem,
-  'xxl': 153.6rem,
+    "sm": 576px,
+    "md": 768px,
+    "lg": 1024px,
+    "xl": 1280px,
+    "xxl": 1536px,
 );
 
 /* grid system */
 $grid-columns: 12;
 
 $grid-gaps: (
-  0: 0,
-  1: 1rem,
-  2: 2rem,
-  3: 3rem,
+    0: 0,
+    1: 1rem,
+    2: 2rem,
+    3: 3rem,
 );

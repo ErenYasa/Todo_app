@@ -1,0 +1,20 @@
+.main {
+    @include containerClass("sm");
+
+    &__header {
+        padding: 1rem;
+        border-radius: map-get($radius, "md");
+        background-color: rgba($c-light, 0.5);
+    }
+
+    &__body {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        border-radius: map-get($radius, "md");
+        background-color: rgba($c-light, 0.5);
+
+        @include sm {
+            margin-top: 3rem;
+        }
+    }
+}

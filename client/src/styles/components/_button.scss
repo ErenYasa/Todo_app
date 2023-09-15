@@ -1,0 +1,33 @@
+.btn {
+    min-width: 7.5rem;
+    flex: 0 0 auto;
+    padding: 0.7rem;
+    border-radius: map-get($radius, "sm");
+    text-transform: uppercase;
+    border: 0.1rem solid $c-primary;
+    background-color: $c-primary;
+    color: $c-light;
+}
+
+.btn--outline {
+    background: $c-light;
+    color: $c-primary;
+
+    &:hover {
+        background: $c-primary;
+        color: $c-light;
+    }
+}
+
+.btn-soft {
+    padding: 0.5rem 0.8rem;
+    font-size: map-get($text-size, "xs");
+    text-transform: uppercase;
+    border-radius: map-get($radius, "sm");
+
+    &:hover,
+    &.active {
+        background-color: rgba($c-primary, 0.2);
+        color: $c-primary;
+    }
+}

@@ -1,0 +1,5 @@
+.todos-container {
+    margin-top: 15px;
+    border-radius: map-get($radius, "sm");
+    background-color: $c-light;
+}

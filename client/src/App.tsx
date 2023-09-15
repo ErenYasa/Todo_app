@@ -1,5 +1,7 @@
+import { Root } from './layout/Root';
+
 function App() {
-  return <>test</>;
+  return <Root />;
 }
 
 export default App;
