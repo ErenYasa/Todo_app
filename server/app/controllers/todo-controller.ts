@@ -18,10 +18,12 @@ export async function getTodo(req: Request, res: Response) {
     res.send(
       new SuccessResponse({
         result: {
-          id: existTodo!.id,
-          title: existTodo!.title,
-          desc: existTodo!.desc,
-          date: existTodo!.date,
+          id: existTodo.id,
+          title: existTodo.title,
+          desc: existTodo.desc,
+          status: existTodo.status,
+          createdAt: existTodo.createdAt,
+          updatedAt: existTodo.updatedAt,
         },
       })
     );
@@ -66,7 +68,6 @@ export async function createTodo(req: Request, res: Response) {
           id: newTodo.id,
           title: newTodo.title,
           desc: newTodo.desc,
-          date: newTodo.date,
         },
       })
     );
@@ -94,16 +95,7 @@ export async function updateTodo(req: Request, res: Response) {
         .send(new ErrorResponse(errorTypes.DOESNOT_EXIST_TODO));
     }
 
-    res.send(
-      new SuccessResponse({
-        result: {
-          id: existTodo!.id,
-          title: existTodo!.title,
-          desc: existTodo!.desc,
-          date: existTodo!.date,
-        },
-      })
-    );
+    res.send(new SuccessResponse({ result: true }));
   } catch (error: any) {
     console.log(error);
 
@@ -126,16 +118,7 @@ export async function deleteTodo(req: Request, res: Response) {
         .send(new ErrorResponse(errorTypes.DOESNOT_EXIST_TODO));
     }
 
-    res.send(
-      new SuccessResponse({
-        result: {
-          id: existTodo!.id,
-          title: existTodo!.title,
-          desc: existTodo!.desc,
-          date: existTodo!.date,
-        },
-      })
-    );
+    res.send(new SuccessResponse({ result: true }));
   } catch (error: any) {
     console.log(error);
 
@@ -149,9 +132,7 @@ export async function deleteTodo(req: Request, res: Response) {
 
 export async function deleteAll(req: Request, res: Response) {
   try {
-    const all = await TodoModel.deleteMany({});
-
-    res.send(new SuccessResponse({ result: all }));
+    res.send(new SuccessResponse({ result: true }));
   } catch (error: any) {
     console.log(error);
     return res

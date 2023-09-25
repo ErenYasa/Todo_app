@@ -1,29 +1,28 @@
-import { useState } from 'react';
-import * as Icon from '../Icons';
-import { Modal } from '../Modal';
-import ConfirmModal from '../Modal/Modals/Confirm.modal';
-import { EditModal } from '../Modal/Modals/Edit.modal';
+import { useAppDispatch } from '@store/hooks';
+import { openModal } from '@store/slices/modal.slice';
+import * as Icon from '@components/Icons';
+import { ChangeEvent } from 'react';
 
 export function Todo() {
-  const [openDeleteModal, setOpenDeleteModal] = useState(false);
-  const [openEditModal, setOpenEditModal] = useState(false);
+  const dispatch = useAppDispatch();
 
-  const toggleDeleteModal = (): void => setOpenDeleteModal(!openDeleteModal);
-
-  const toggleEditModal = (): void => setOpenEditModal(!openEditModal);
+  const handleTodoChange = (e: ChangeEvent<HTMLInputElement>) => {
+    console.log(e?.target?.checked);
+  };
 
   const handleEditClick = () => {
-    setOpenEditModal(!openEditModal);
+    dispatch(openModal({ name: ModalNames.EDIT_TODO, data: 'TEST' }));
   };
 
   const handleDeleteClick = () => {
-    setOpenDeleteModal(!openDeleteModal);
+    dispatch(openModal({ name: ModalNames.CONFIRM }));
   };
+
   return (
     <>
       <li className="todo-list__item">
         <label className="todo-list__item__container">
-          <input type="checkbox" className="todo-list__item__checkbox" />
+          <input type="checkbox" className="todo-list__item__checkbox" onChange={(e) => handleTodoChange(e)} hidden />
           <span className="todo-list__item__checkbox__checkmark"></span>
           <span className="todo-list__item__checkbox__background"></span>
           <div className="todo-list__item__body">
@@ -45,12 +44,6 @@ export function Todo() {
           </div>
         </label>
       </li>
-      <Modal type="confirm" isOpen={openDeleteModal} toggle={toggleDeleteModal}>
-        <ConfirmModal />
-      </Modal>
-      <Modal className="modal--edit-todo" isOpen={openEditModal} toggle={toggleEditModal}>
-        <EditModal />
-      </Modal>
     </>
   );
 }
