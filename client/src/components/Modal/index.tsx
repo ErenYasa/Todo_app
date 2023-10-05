@@ -34,7 +34,9 @@ export function Modal(props: IBaseModalProps) {
           </button>
         </div>
       </header>
-      <div className="modal__body">{cloneElement(props.children as ReactElement, { toggle: close })}</div>
+      <div className="modal__body">
+        {cloneElement(props.children as ReactElement, { toggle: close, data: Modal.modalData })}
+      </div>
       {/* <form method="dialog" className="modal-backdrop">
           <button onClick={props.toggle}>close</button>
         </form> */}

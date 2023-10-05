@@ -97,10 +97,33 @@
         }
     }
 
-    .edit-todo__save__btn {
+    .edit-todo__bottom {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+
         @include sm {
-            width: max-content;
-            margin-left: auto;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: unset;
+        }
+
+        .edit-todo__date-container {
+            display: flex;
+            flex-direction: column;
+
+            .edit-todo__date {
+                font-size: map-get($text-size, "xs");
+                color: $c-gray;
+            }
+        }
+
+        .edit-todo__save__btn {
+            @include sm {
+                width: max-content;
+                height: max-content;
+                margin-left: auto;
+            }
         }
     }
 }

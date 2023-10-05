@@ -1,5 +1,10 @@
 .todos-container {
-    margin-top: 15px;
+    position: relative;
+    margin-top: 1.5rem;
     border-radius: map-get($radius, "sm");
     background-color: $c-light;
+
+    .loader__dropmask__dots {
+        display: none;
+    }
 }

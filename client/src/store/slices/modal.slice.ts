@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction, Slice } from '@reduxjs/toolkit';
 import { IModalState } from '@store/interfaces/modal.slice.interface';
+import { ModalNames } from '@/types/global';
 
 const initialState: IModalState = {
   modals: {

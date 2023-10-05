@@ -1,13 +1,12 @@
-export enum StatusType {
-  COMPLETED = 'completed',
-  INCOMPLETE = 'incomplete',
-}
-
 export interface ITodo {
-  id: string;
+  _id: string;
   title: string;
   desc: string;
-  status: StatusType;
+  status: number;
+}
+
+export interface ITodoRequest {
+  title: string;
 }
 
 export interface ITodoResponse extends ITodo {
@@ -18,8 +17,19 @@ export interface ITodoResponse extends ITodo {
 export type ITodosResponse = ITodoResponse[];
 
 export interface ITodoUpdateRequest {
-  id: string;
-  body: ITodo;
+  _id: string;
+  body: {
+    title?: string;
+    desc?: string;
+    status?: number;
+  };
+}
+
+export interface ITodoUpdateStatusRequest {
+  _id: string;
+  body: {
+    status: number;
+  };
 }
 
 export interface IDeleteAllResponse {

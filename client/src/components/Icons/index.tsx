@@ -24,3 +24,19 @@ export function Delete(props: IIconProps) {
     </svg>
   );
 }
+
+export function DotsLoading(props: IIconProps) {
+  return (
+    <svg viewBox="0 44 52 12" width={props.width || '50px'} height={props.height || '15px'}>
+      <circle fill={props.color || '#00000'} stroke="none" cx="6" cy="50" r="6">
+        <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0" />
+      </circle>
+      <circle fill={props.color || '#00000'} stroke="none" cx="26" cy="50" r="6">
+        <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.2" />
+      </circle>
+      <circle fill={props.color || '#00000'} stroke="none" cx="46" cy="50" r="6">
+        <animate attributeName="opacity" dur="1s" values="0;1;0" repeatCount="indefinite" begin="0.3" />
+      </circle>
+    </svg>
+  );
+}

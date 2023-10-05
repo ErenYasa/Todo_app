@@ -1,14 +1,13 @@
-import mongoose, { InferSchemaType } from "mongoose";
-import dayjs from "dayjs";
-import "dayjs/locale/tr";
+import mongoose from "mongoose";
+import { FilterStatus, ITodo } from "../types";
 
-const todoSchema = new mongoose.Schema(
+const todoSchema = new mongoose.Schema<ITodo>(
   {
     title: { type: String, required: true, trim: true },
-    desc: { type: String, trim: true },
+    desc: { type: String, trim: true, default: "" },
     status: {
-      type: String,
-      default: "incomplete",
+      type: Number,
+      default: FilterStatus.INCOMPLETE,
     },
   },
   { timestamps: true }

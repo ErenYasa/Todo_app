@@ -1,6 +1,25 @@
+import { useGetTodosQuery } from '@/services/todo';
 import { Todo } from '../Todo';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import { useEffect } from 'react';
+import { setLocalLoader } from '@/store/slices/app.slice';
 
 export function TodoList() {
+  /* Variables */
+  const { filterStatus } = useAppSelector((state) => state.App);
+  const dispatch = useAppDispatch();
+  /*  */
+
+  /* Queires */
+  const { data: allTodo, isFetching } = useGetTodosQuery(filterStatus);
+  /*  */
+
+  /* useEffects */
+  useEffect(() => {
+    dispatch(setLocalLoader(isFetching));
+  }, [isFetching]);
+  /*  */
+
   /* const [scrollPosition, setScrollPosition] = useState<number>();
   const todoListContainerRef = useRef<HTMLDivElement>(null);
   const todoListRef = useRef<HTMLUListElement>(null);
@@ -16,17 +35,7 @@ export function TodoList() {
 
   return (
     <div className="todo-list-container">
-      <ul className="todo-list">
-        <Todo />
-        <Todo />
-        <Todo />
-        <Todo />
-        <Todo />
-        <Todo />
-        <Todo />
-        <Todo />
-        <Todo />
-      </ul>
+      <ul className="todo-list">{allTodo?.map((todo, i) => <Todo data={todo} key={i} />).reverse()}</ul>
       {/* {scrollPosition! > 50 && <p>scrolll</p>} */}
     </div>
   );

@@ -1,7 +1,7 @@
 import { Middleware, configureStore, isRejectedWithValue } from '@reduxjs/toolkit';
 import App from './slices/app.slice';
-import { apiSlice } from './api/api.slice';
 import Modal from './slices/modal.slice';
+import { todoService } from '@/services/todo';
 
 export const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
   if (isRejectedWithValue(action)) {
@@ -15,10 +15,10 @@ export const store = configureStore({
   reducer: {
     App,
     Modal,
-    [apiSlice.reducerPath]: apiSlice.reducer,
+    [todoService.reducerPath]: todoService.reducer,
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware({ serializableCheck: false }).concat(apiSlice.middleware, rtkQueryErrorLogger);
+    return getDefaultMiddleware({ serializableCheck: false }).concat(todoService.middleware, rtkQueryErrorLogger);
   },
 });
 
