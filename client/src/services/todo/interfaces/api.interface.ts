@@ -1,3 +1,5 @@
+import { FilterStatus } from '@/types/global';
+
 export interface ITodo {
   _id: string;
   title: string;
@@ -6,7 +8,9 @@ export interface ITodo {
 }
 
 export interface ITodoRequest {
-  title: string;
+  title?: string;
+  status?: FilterStatus;
+  q?: string;
 }
 
 export interface ITodoResponse extends ITodo {

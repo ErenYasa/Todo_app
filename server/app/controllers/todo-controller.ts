@@ -40,38 +40,37 @@ export async function getTodo(req: Request, res: Response) {
   }
 }
 
-export async function getAll(req: Request, res: Response) {
-  try {
-    const all = await TodoModel.find();
-
-    res.send(
-      new SuccessResponse({
-        result: all.map((eachTodo) => eachTodo),
-      })
-    );
-  } catch (error: any) {
-    console.log(error);
-
-    return res
-      .status(404)
-      .send(
-        new ErrorResponse(errorTypes.SERVER_ERROR, error.message as string)
-      );
-  }
-}
-
 export async function getTodos(req: Request, res: Response) {
   try {
-    const { status } = req.query;
+    const { q, status } = req.query;
     let todos;
+    let searchResult;
 
-    if (Number(status) === FilterStatus.ALL) {
-      todos = await TodoModel.find();
+    if (q) {
+      const allTodo = await TodoModel.find();
+      const options = {
+        keys: ["title"],
+        includeScore: true,
+        threshold: 0.3,
+      };
+
+      const fuse = new Fuse(allTodo, options);
+      searchResult = fuse.search(q as string);
+
+      if (searchResult) {
+        return res.send(
+          new SuccessResponse({ result: searchResult.map((sr) => sr.item) })
+        );
+      }
     } else {
-      todos = await TodoModel.find({ status });
-    }
+      if (Number(status) === FilterStatus.ALL) {
+        todos = await TodoModel.find();
+      } else {
+        todos = await TodoModel.find({ status });
+      }
 
-    res.send(new SuccessResponse({ result: todos }));
+      res.send(new SuccessResponse({ result: todos }));
+    }
   } catch (error: any) {
     console.log(error);
 
@@ -176,63 +175,6 @@ export async function deleteAll(req: Request, res: Response) {
       .status(404)
       .send(
         new ErrorResponse(errorTypes.SERVER_ERROR, error.message as string)
-      );
-  }
-}
-
-export async function getFilteredTodos(req: Request, res: Response) {
-  try {
-    const { status } = req.query;
-
-    let statusValue;
-    switch (Number(status)) {
-      case 0:
-        statusValue = FilterStatus.INCOMPLETE;
-        break;
-      case 1:
-        statusValue = FilterStatus.COMPLETED;
-        break;
-      default:
-        statusValue = FilterStatus.INCOMPLETE;
-        break;
-    }
-
-    const filteredTodos = await TodoModel.find({ status: statusValue });
-
-    res.send(new SuccessResponse({ result: filteredTodos }));
-  } catch (error: any) {
-    return res
-      .status(404)
-      .send(
-        new ErrorResponse(errorTypes.SERVER_ERROR, error.message as string)
-      );
-  }
-}
-
-export async function getTodosFromSearch(req: Request, res: Response) {
-  try {
-    const q: any = req.query.q;
-
-    if (q === undefined || q === "") {
-      return;
-    }
-
-    const allTodo = await TodoModel.find();
-    const options = {
-      keys: ["title"],
-      includeScore: true,
-      threshold: 0.3,
-    };
-
-    const fuse = new Fuse(allTodo, options);
-    const searchResult = fuse.search(q);
-
-    res.send(new SuccessResponse({ result: searchResult }));
-  } catch (error: any) {
-    return res
-      .status(404)
-      .send(
-        new ErrorResponse(errorTypes.SEARCH_ERROR, error.message as string)
       );
   }
 }

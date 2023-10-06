@@ -8,4 +8,5 @@ export interface IAppState {
   todos: ITodosResponse;
   todoCount: number;
   filterStatus: FilterStatus;
+  searchQuery: string;
 }

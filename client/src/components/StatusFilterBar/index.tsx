@@ -1,14 +1,16 @@
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
-import { setFilterStatus, setTodos } from '@/store/slices/app.slice';
+import { setFilterStatus } from '@/store/slices/app.slice';
 import { FilterStatus } from '@/types/global';
-import { useLazyGetTodosQuery } from '@/services/todo';
 import classNames from 'classnames';
 import * as Button from '../Button';
 
 export function StatusFilterBar() {
-  /* Variables */
+  /* Hooks */
   const { todoCount, filterStatus } = useAppSelector((state) => state.App);
   const dispatch = useAppDispatch();
+  /*  */
+
+  /* Variables */
   const STATUS_BTNS = [
     {
       text: 'all',
@@ -25,15 +27,9 @@ export function StatusFilterBar() {
   ];
   /*  */
 
-  /* Queries */
-  const [getTodos] = useLazyGetTodosQuery();
-  /*  */
-
   /* Events & Functions */
   const handleStatusClick = (status: FilterStatus) => {
     if (status === filterStatus) return;
-
-    getTodos(status).then(({ data }) => dispatch(setTodos(data)));
     dispatch(setFilterStatus(status));
   };
 

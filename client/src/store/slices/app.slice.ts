@@ -9,6 +9,7 @@ const initialState: IAppState = {
   todos: [],
   todoCount: 0,
   filterStatus: 2,
+  searchQuery: '',
 };
 
 export const appSlice: Slice<IAppState> = createSlice({
@@ -33,10 +34,13 @@ export const appSlice: Slice<IAppState> = createSlice({
     setFilterStatus: (state, { payload }: PayloadAction<number>) => {
       state.filterStatus = payload;
     },
+    setSearchQuery: (state, { payload }: PayloadAction<string>) => {
+      state.searchQuery = payload;
+    },
   },
 });
 
-export const { setMobileView, setLocalLoader, setAppLoader, setTodos, setTodoCount, setFilterStatus } =
+export const { setMobileView, setLocalLoader, setAppLoader, setTodos, setTodoCount, setFilterStatus, setSearchQuery } =
   appSlice.actions;
 
 export default appSlice.reducer;

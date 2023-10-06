@@ -5,13 +5,13 @@ import { useEffect } from 'react';
 import { setLocalLoader } from '@/store/slices/app.slice';
 
 export function TodoList() {
-  /* Variables */
-  const { filterStatus } = useAppSelector((state) => state.App);
+  /* Hooks */
+  const { filterStatus, searchQuery } = useAppSelector((state) => state.App);
   const dispatch = useAppDispatch();
   /*  */
 
   /* Queires */
-  const { data: allTodo, isFetching } = useGetTodosQuery(filterStatus);
+  const { data: allTodo, isFetching } = useGetTodosQuery({ q: searchQuery, status: filterStatus });
   /*  */
 
   /* useEffects */

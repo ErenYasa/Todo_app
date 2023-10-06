@@ -2,7 +2,8 @@ import { getEnv } from '@helpers/index';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ITodosResponse, ITodoRequest, ITodoResponse, ITodoUpdateRequest, ITodo } from './interfaces/api.interface';
 import { ISuccessResponse } from './interfaces';
-import { setTodoCount } from '@/store/slices/app.slice';
+import { setTodoCount, setFilterStatus } from '@/store/slices/app.slice';
+import { FilterStatus } from '@/types/global';
 
 const setBaseUrl = () => {
   if (getEnv() === 'DEV') return 'http://localhost:8080/api/';
@@ -23,21 +24,20 @@ export const todoService = createApi({
         },
       }),
     }),
-    getAll: builder.query<ITodosResponse, any>({
-      query: () => ({
-        url: 'todos',
-      }),
+    getTodos: builder.query<ITodosResponse, ITodoRequest>({
+      query: ({ q, status }) => {
+        const query = () => (q ? `q=${q}&` : '');
+        if (q) status = FilterStatus.ALL;
+
+        return {
+          url: `todos?${query()}status=${status}`,
+        };
+      },
       providesTags: ['Todos'],
       transformResponse: (response: ISuccessResponse<ITodosResponse>) => response.data.result,
-    }),
-    getTodos: builder.query<ITodosResponse, 0 | 1 | 2>({
-      query: (status = 2) => ({
-        url: `todos?status=${status}`,
-      }),
-      providesTags: ['Todos'],
-      transformResponse: (response: ISuccessResponse<ITodosResponse>) => response.data.result,
-      onQueryStarted(_arg, { dispatch, queryFulfilled }) {
+      onQueryStarted(arg, { dispatch, queryFulfilled }) {
         queryFulfilled.then(({ data }) => {
+          if (arg.q) dispatch(setFilterStatus(FilterStatus.ALL));
           dispatch(setTodoCount(data.length));
         });
       },
@@ -82,34 +82,16 @@ export const todoService = createApi({
       }),
       invalidatesTags: ['Todos'],
     }),
-    getFilteredTodos: builder.query<ITodosResponse, number>({
-      query: (status) => ({
-        url: `filtered-todos?status=${status}`,
-      }),
-      transformResponse: (response: ISuccessResponse<ITodosResponse>) => response.data.result,
-    }),
-    getTodosFromSearch: builder.query<ITodosResponse, string>({
-      query: (q) => ({
-        url: `search-todo?q=${q}`,
-      }),
-      transformResponse: (response: ISuccessResponse<ITodosResponse>) => response.data.result,
-    }),
   }),
 });
 
 export const {
   useGetTodoQuery,
   useLazyGetTodoQuery,
-  useCreateTodoMutation,
-  useDeleteAllMutation,
-  useDeleteTodoMutation,
-  useGetAllQuery,
-  useLazyGetAllQuery,
   useGetTodosQuery,
   useLazyGetTodosQuery,
+  useCreateTodoMutation,
   useUpdateTodoMutation,
-  useGetFilteredTodosQuery,
-  useLazyGetFilteredTodosQuery,
-  useGetTodosFromSearchQuery,
-  useLazyGetTodosFromSearchQuery,
+  useDeleteAllMutation,
+  useDeleteTodoMutation,
 } = todoService;
