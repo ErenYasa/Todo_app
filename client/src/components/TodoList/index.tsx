@@ -1,8 +1,9 @@
 import { useGetTodosQuery } from '@/services/todo';
-import { Todo } from '../Todo';
-import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setLocalLoader } from '@/store/slices/app.slice';
+import { VList } from 'virtua';
+import { Todo } from '../Todo';
 
 export function TodoList() {
   /* Hooks */
@@ -35,7 +36,10 @@ export function TodoList() {
 
   return (
     <div className="todo-list-container">
-      <ul className="todo-list">{allTodo?.map((todo, i) => <Todo data={todo} key={i} />).reverse()}</ul>
+      <VList style={{ height: 250 }} className="todo-list">
+        {allTodo?.map((todo, i) => <Todo data={todo} key={i} />).reverse()}
+      </VList>
+      {/* <ul className="todo-list">{allTodo?.map((todo, i) => <Todo data={todo} key={i} />).reverse()}</ul> */}
       {/* {scrollPosition! > 50 && <p>scrolll</p>} */}
     </div>
   );

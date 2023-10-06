@@ -10,6 +10,9 @@ dependencies:
   react-router-dom:
     specifier: ^6.15.0
     version: 6.15.0(react-dom@18.2.0)(react@18.2.0)
+  virtua:
+    specifier: ^0.11.0
+    version: 0.11.0(react-dom@18.2.0)(react@18.2.0)
 
 devDependencies:
   '@reduxjs/toolkit':
@@ -3478,6 +3481,16 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: true
+
+  /virtua@0.11.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-2pe1ksvH/aYTsBASQ+lymU3uOyAf8YsXBUGqxZPw6cpXK1yWUGHTRbMz5iwKDnWpA3ymgPrQiFFBGk7eq6zO2A==}
+    peerDependencies:
+      react: '>=16.14.0'
+      react-dom: '>=16.14.0'
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+    dev: false
 
   /vite@4.4.5(sass@1.66.1):
     resolution: {integrity: sha512-4m5kEtAWHYr0O1Fu7rZp64CfO1PsRGZlD3TAB32UmQlpd7qg15VF7ROqGN5CyqN7HFuwr7ICNM2+fDWRqFEKaA==}
