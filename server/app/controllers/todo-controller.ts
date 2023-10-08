@@ -4,7 +4,7 @@ import TodoModel from "../models/todo-model";
 import { ErrorResponse } from "../responses/ErrorResponse";
 import { SuccessResponse } from "../responses/SuccessResponse";
 import { errorTypes } from "../config/errorTypes";
-import { FilterStatus } from "../types";
+import { FilterStatus, ITodo } from "../types";
 
 export async function getTodo(req: Request, res: Response) {
   try {
@@ -52,6 +52,7 @@ export async function getTodos(req: Request, res: Response) {
         keys: ["title"],
         includeScore: true,
         threshold: 0.3,
+        shouldSort: true,
       };
 
       const fuse = new Fuse(allTodo, options);

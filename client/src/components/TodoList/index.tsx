@@ -36,9 +36,13 @@ export function TodoList() {
 
   return (
     <div className="todo-list-container">
-      <VList style={{ height: 250 }} className="todo-list">
-        {allTodo?.map((todo, i) => <Todo data={todo} key={i} />).reverse()}
-      </VList>
+      {allTodo && allTodo.length < 20 ? (
+        <ul className="todo-list">{allTodo?.map((todo, i) => <Todo data={todo} key={i} />).reverse()}</ul>
+      ) : (
+        <VList style={{ height: 250 }} className="todo-list">
+          {allTodo?.map((todo, i) => <Todo data={todo} key={i} />).reverse()}
+        </VList>
+      )}
       {/* <ul className="todo-list">{allTodo?.map((todo, i) => <Todo data={todo} key={i} />).reverse()}</ul> */}
       {/* {scrollPosition! > 50 && <p>scrolll</p>} */}
     </div>

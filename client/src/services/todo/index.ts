@@ -2,7 +2,6 @@ import { getEnv } from '@helpers/index';
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ITodosResponse, ITodoRequest, ITodoResponse, ITodoUpdateRequest, ITodo } from './interfaces/api.interface';
 import { ISuccessResponse } from './interfaces';
-import { setTodoCount, setFilterStatus } from '@/store/slices/app.slice';
 import { FilterStatus } from '@/types/global';
 
 const setBaseUrl = () => {
@@ -35,12 +34,6 @@ export const todoService = createApi({
       },
       providesTags: ['Todos'],
       transformResponse: (response: ISuccessResponse<ITodosResponse>) => response.data.result,
-      onQueryStarted(arg, { dispatch, queryFulfilled }) {
-        queryFulfilled.then(({ data }) => {
-          if (arg.q) dispatch(setFilterStatus(FilterStatus.ALL));
-          dispatch(setTodoCount(data.length));
-        });
-      },
     }),
     createTodo: builder.mutation<ITodoResponse, ITodoRequest>({
       query: (body) => ({

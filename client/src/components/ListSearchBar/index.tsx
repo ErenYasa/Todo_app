@@ -1,7 +1,8 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useDebounce } from 'usehooks-ts';
 import { useAppDispatch } from '@/store/hooks';
-import { setSearchQuery } from '@/store/slices/app.slice';
+import { setFilterStatus, setSearchQuery } from '@/store/slices/app.slice';
+import { FilterStatus } from '@/types/global';
 
 export function ListSearchBar() {
   const dispatch = useAppDispatch();
@@ -21,6 +22,7 @@ export function ListSearchBar() {
 
   useEffect(() => {
     dispatch(setSearchQuery(debouncedSearchQuery));
+    dispatch(setFilterStatus(FilterStatus.ALL));
   }, [debouncedSearchQuery]);
   /*  */
   return (

@@ -6,7 +6,6 @@ export interface IAppState {
   mobileView: boolean;
   localLoader: boolean;
   todos: ITodosResponse;
-  todoCount: number;
   filterStatus: FilterStatus;
   searchQuery: string;
 }
