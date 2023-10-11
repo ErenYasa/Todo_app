@@ -3,7 +3,7 @@ const CACHE_NAME = 'version-1';
 const urlsToCache = ['../index.html', 'offline.html'];
 
 // Install SW
-this.addEventListener('install', (event: any) => {
+this.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME).then((cache) => {
       console.log('Opened cache');
@@ -14,7 +14,7 @@ this.addEventListener('install', (event: any) => {
 });
 
 // Listen for requests
-this.addEventListener('fetch', (event: any) => {
+this.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then(async () => {
       return fetch(event.request).catch(() => caches.match('offline.html'));
@@ -23,7 +23,7 @@ this.addEventListener('fetch', (event: any) => {
 });
 
 // Activate the SW
-this.addEventListener('activate', (event: any) => {
+this.addEventListener('activate', (event) => {
   const cacheWhitelist = [];
   //@ts-ignore
   cacheWhitelist.push(CACHE_NAME);
