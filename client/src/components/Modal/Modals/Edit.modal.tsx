@@ -1,10 +1,10 @@
 import { useUpdateTodoMutation } from '@/services/todo';
 import * as Button from '../../Button/index';
 import { useAppSelector } from '@/store/hooks';
-import { ChangeEvent, useEffect, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { formatDate } from '@/helpers';
 
-export function EditModal(props) {
+export function EditModal(props: any) {
   /* Variables */
   const Modal = useAppSelector((state) => state.Modal.modalData.editTodo);
   /*  */
@@ -16,7 +16,7 @@ export function EditModal(props) {
   /*  */
 
   /* Queries */
-  const [updateTodo, { data, isLoading }] = useUpdateTodoMutation();
+  const [updateTodo] = useUpdateTodoMutation();
   /*  */
 
   /* Events & Functions */

@@ -1,12 +1,7 @@
 import { useDeleteTodoMutation } from '@/services/todo';
 import * as Button from '../../Button';
 
-type Props = {
-  toggle: () => void;
-  data: any;
-};
-
-export default function ConfirmModal(props: Props) {
+export default function ConfirmModal(props: any) {
   /* Queries */
   const [deleteTodo, { isLoading }] = useDeleteTodoMutation({});
   /*  */
