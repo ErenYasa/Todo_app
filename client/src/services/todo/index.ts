@@ -7,7 +7,7 @@ import { toast } from 'react-toastify';
 
 const setBaseUrl = () => {
   if (getEnv() === 'DEV') return 'http://localhost:8080/api/';
-  return 'https://mern-todo-app-service.onrender.com';
+  return 'https://mern-todo-app-service.onrender.com/api/';
 };
 
 export const todoService = createApi({
