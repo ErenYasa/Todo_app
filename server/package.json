@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "start:server": "nodemon app/index.ts",
-    "build:server": "tsc"
+    "build:server": "pnpm install && pnpm build:server"
   },
   "keywords": [],
   "author": "",
