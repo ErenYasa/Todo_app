@@ -1,13 +1,13 @@
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { setFilterStatus } from '@/store/slices/app.slice';
 import { FilterStatus } from '@/types/global';
+import { useGetTodosQuery } from '@/services/todo';
 import classNames from 'classnames';
 import * as Button from '../Button';
-import { useGetTodosQuery } from '@/services/todo';
 
 export function StatusFilterBar() {
   /* Hooks */
-  const { filterStatus, searchQuery } = useAppSelector((state) => state.App);
+  const { filterStatus } = useAppSelector((state) => state.App);
   const dispatch = useAppDispatch();
   /*  */
 
@@ -29,7 +29,7 @@ export function StatusFilterBar() {
   /*  */
 
   /* Queires */
-  const { data: allTodo } = useGetTodosQuery({ q: searchQuery, status: filterStatus });
+  const { data: allTodo } = useGetTodosQuery({ status: filterStatus });
   /*  */
 
   /* Events & Functions */

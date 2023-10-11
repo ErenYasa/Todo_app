@@ -3,6 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { ITodosResponse, ITodoRequest, ITodoResponse, ITodoUpdateRequest, ITodo } from './interfaces/api.interface';
 import { ISuccessResponse } from './interfaces';
 import { FilterStatus } from '@/types/global';
+import { toast } from 'react-toastify';
 
 const setBaseUrl = () => {
   if (getEnv() === 'DEV') return 'http://localhost:8080/api/';
@@ -24,12 +25,18 @@ export const todoService = createApi({
       }),
     }),
     getTodos: builder.query<ITodosResponse, ITodoRequest>({
-      query: ({ q, status }) => {
-        const query = () => (q ? `q=${q}&` : '');
-        if (q) status = FilterStatus.ALL;
+      query: ({ q, status = 2 }) => {
+        const queryParams = new URLSearchParams();
+
+        if (q) {
+          queryParams.append('q', q);
+          status = FilterStatus.ALL;
+        }
+
+        queryParams.append('status', status.toString());
 
         return {
-          url: `todos?${query()}status=${status}`,
+          url: `todos?${queryParams.toString()}`,
         };
       },
       providesTags: ['Todos'],
@@ -45,6 +52,11 @@ export const todoService = createApi({
           return json;
         },
       }),
+      onQueryStarted(_arg, { queryFulfilled }) {
+        queryFulfilled.then(() => {
+          toast.success('Todo created successfully');
+        });
+      },
       invalidatesTags: ['Todos'],
     }),
     updateTodo: builder.mutation<ITodo, ITodoUpdateRequest>({
@@ -53,6 +65,11 @@ export const todoService = createApi({
         method: 'PUT',
         body,
       }),
+      onQueryStarted(_arg, { queryFulfilled }) {
+        queryFulfilled.then(() => {
+          toast.success('Todo updated successfully');
+        });
+      },
       invalidatesTags: ['Todos'],
       transformResponse: (response: ISuccessResponse<ITodo>) => response.data.result,
     }),
@@ -61,6 +78,11 @@ export const todoService = createApi({
         url: `todo/${id}`,
         method: 'DELETE',
       }),
+      onQueryStarted(_arg, { queryFulfilled }) {
+        queryFulfilled.then(() => {
+          toast.success('Todo deleted successfully');
+        });
+      },
       invalidatesTags: ['Todos'],
       transformResponse: (response: ISuccessResponse<boolean>) => response.data.result,
     }),

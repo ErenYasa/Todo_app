@@ -10,6 +10,20 @@
             align-items: center;
             height: 6rem;
 
+            &.highlight {
+                animation: target-fade 5s 1 forwards;
+                background: #c1eec2;
+            }
+
+            @keyframes target-fade {
+                0% {
+                    background-color: #c1eec2;
+                }
+                100% {
+                    background-color: transparent;
+                }
+            }
+
             &.completed {
                 background: #c1eec2;
             }

@@ -1,12 +1,13 @@
 import { useAppDispatch } from '@store/hooks';
 import { openModal } from '@store/slices/modal.slice';
 import * as Icon from '@components/Icons';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useRef } from 'react';
 import { ModalNames } from '@/types/global';
 import { ITodoResponse } from '@/services/todo/interfaces/api.interface';
 import { formatDate } from '@/helpers';
 import { useUpdateTodoMutation } from '@/services/todo';
 import classNames from 'classnames';
+import dayjs from 'dayjs';
 
 type Props = {
   data: ITodoResponse;
@@ -38,10 +39,19 @@ export function Todo({ data }: Props) {
     completed: Boolean(data.status),
   });
   /* */
+  const todoRef = useRef<HTMLLIElement>(null);
+
+  if (dayjs().diff(dayjs(data.createdAt), 'second') < 5) {
+    todoRef.current?.classList.add('highlight');
+
+    setTimeout(function () {
+      todoRef.current?.classList.remove('highlight');
+    }, 5000);
+  }
 
   return (
     <>
-      <li className={todoClasses}>
+      <li className={todoClasses} ref={todoRef}>
         <label className="todo-list__item__checkbox">
           <input
             type="checkbox"

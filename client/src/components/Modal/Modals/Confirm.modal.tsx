@@ -28,8 +28,14 @@ export default function ConfirmModal(props: Props) {
     <>
       <p className="modal--confirm__title">Are you sure?</p>
       <div className="modal--confirm__btn__group">
-        <Button.DefaultOutline onClick={handleNegativeClick}>No</Button.DefaultOutline>
-        <Button.Default onClick={handlePositiveClick}>Yes</Button.Default>
+        {!isLoading ? (
+          <>
+            <Button.DefaultOutline onClick={handleNegativeClick}>No</Button.DefaultOutline>
+            <Button.Default onClick={handlePositiveClick}>Yes</Button.Default>
+          </>
+        ) : (
+          '...loading'
+        )}
       </div>
     </>
   );

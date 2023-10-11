@@ -13,6 +13,7 @@ export function TodoList() {
 
   /* Queires */
   const { data: allTodo, isFetching } = useGetTodosQuery({ q: searchQuery, status: filterStatus });
+
   /*  */
 
   /* useEffects */
@@ -39,7 +40,7 @@ export function TodoList() {
       {allTodo && allTodo.length < 20 ? (
         <ul className="todo-list">{allTodo?.map((todo, i) => <Todo data={todo} key={i} />).reverse()}</ul>
       ) : (
-        <VList style={{ height: 250 }} className="todo-list">
+        <VList style={{ height: 250 }}>
           {allTodo?.map((todo, i) => <Todo data={todo} key={i} />).reverse()}
         </VList>
       )}

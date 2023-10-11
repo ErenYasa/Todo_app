@@ -25,6 +25,7 @@ export function ListSearchBar() {
     dispatch(setFilterStatus(FilterStatus.ALL));
   }, [debouncedSearchQuery]);
   /*  */
+
   return (
     <div className="search-todo-bar">
       <input

@@ -2,9 +2,11 @@ import { Middleware, configureStore, isRejectedWithValue } from '@reduxjs/toolki
 import App from './slices/app.slice';
 import Modal from './slices/modal.slice';
 import { todoService } from '@/services/todo';
+import { toast } from 'react-toastify';
 
 export const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
   if (isRejectedWithValue(action)) {
+    toast.error('Something went wrong');
     console.error(action.error.message);
   }
 
