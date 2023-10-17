@@ -12,7 +12,10 @@
       "@hooks/*": ["./src/hooks/*"],
       "@helpers/*": ["./src/helpers/*"],
       "@utils/*": ["./src/utils/*"],
-      "@services/*": ["./src/services/*"]
+      "@services/*": ["./src/services/*"],
+      "@layout/*": ["./src/layout/*"],
+      "@views/*": ["./src/views/*"],
+      "@routes/*": ["./src/routes/*"]
     },
     "skipLibCheck": true,
     "declaration": true,

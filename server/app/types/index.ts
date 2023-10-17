@@ -11,3 +11,8 @@ export enum FilterStatus {
   COMPLETED = 1,
   ALL = 2,
 }
+
+export interface IUser {
+  email: string;
+  password: string;
+}

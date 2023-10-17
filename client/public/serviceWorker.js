@@ -13,11 +13,19 @@ this.addEventListener('install', (event) => {
   );
 });
 
+// self.addEventListener("fetch", (event) => {
+//   event.respondWith(
+//     caches.match(event.request).then((response) => {
+//       return response || fetch(event.request);
+//     })
+//   );
+// });
+
 // Listen for requests
 this.addEventListener('fetch', (event) => {
   event.respondWith(
-    caches.match(event.request).then(async () => {
-      return fetch(event.request).catch(() => caches.match('offline.html'));
+    caches.match(event.request).then((response) => {
+      return response || fetch(event.request);
     }),
   );
 });

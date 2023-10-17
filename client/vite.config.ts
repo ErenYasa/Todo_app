@@ -19,6 +19,9 @@ export default defineConfig({
       '@helpers': path.resolve(__dirname, './src/helpers/'),
       '@utils': path.resolve(__dirname, './src/utils/'),
       '@services': path.resolve(__dirname, './src/services/'),
+      '@layout': path.resolve(__dirname, './src/layout/'),
+      '@views': path.resolve(__dirname, './src/views/'),
+      '@routes': path.resolve(__dirname, './src/routes/'),
     },
   },
 });

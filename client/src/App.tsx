@@ -1,10 +1,12 @@
-import { useLayoutEffect } from 'react';
-import { Root } from './layout/Root';
-import { useAppDispatch } from '@store/hooks';
+import { Suspense, useLayoutEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { setMobileView } from '@store/slices/app.slice';
+import { Routes } from './routes';
+import { DotsLoader } from './components/Loader';
 
 function App() {
   const dispatch = useAppDispatch();
+  const { appLoader } = useAppSelector((state) => state.App);
 
   useLayoutEffect(() => {
     window.addEventListener('resize', () => {
@@ -20,7 +22,14 @@ function App() {
     };
   }, []);
 
-  return <Root />;
+  return appLoader ? (
+    // <PageLoader className="first-initialize" />
+    'Loading'
+  ) : (
+    <Suspense fallback={<DotsLoader />}>
+      <Routes />
+    </Suspense>
+  );
 }
 
 export default App;
