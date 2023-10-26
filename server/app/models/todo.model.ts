@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import { FilterStatus, ITodo } from "../types";
+import { FilterStatus, ITodo, Priority } from "../types";
 
 const todoSchema = new mongoose.Schema<ITodo>(
   {
@@ -9,6 +9,16 @@ const todoSchema = new mongoose.Schema<ITodo>(
       type: Number,
       default: FilterStatus.INCOMPLETE,
     },
+    deletedAt: { type: Date, default: null },
+    priority: {
+      type: Number,
+      required: true,
+      default: Priority.LOW,
+      enum: Priority,
+    },
+    sectionId: { type: Number, required: true },
+    workSpaceId: { type: Number, required: true },
+    order: { type: Number, required: true, default: 0 },
   },
   { timestamps: true }
 );

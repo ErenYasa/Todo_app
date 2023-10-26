@@ -4,7 +4,8 @@ import express, { Request, Response } from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import helmet from "helmet";
-import todoRoute from "./routes/todo-route";
+import todoRoute from "./routes/todo.route";
+import authRoute from "./routes/auth.route";
 import { db } from "./config/db";
 
 const app = express();
@@ -51,6 +52,7 @@ app.get("/", (_req: Request, res: Response) => {
   }
 });
 
+app.use("/api/auth", authRoute);
 app.use("/api", todoRoute);
 
 app.listen(process.env.PORT, () => {

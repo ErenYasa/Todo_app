@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import Fuse from "fuse.js";
-import TodoModel from "../models/todo-model";
+import TodoModel from "../models/todo.model";
 import { ErrorResponse } from "../responses/ErrorResponse";
 import { SuccessResponse } from "../responses/SuccessResponse";
 import { errorTypes } from "../config/errorTypes";
