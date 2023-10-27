@@ -1,14 +1,14 @@
 export interface ITodo {
   title: string;
   desc?: string;
-  status?: number;
+  status: number;
   createdAt: Date;
   updatedAt: Date;
-  deletedAt?: Date;
-  priority?: number;
+  deletedAt: Date | null;
+  priority: number;
   sectionId?: string;
   workSpaceId?: string;
-  order?: number;
+  order: number;
 }
 
 export enum FilterStatus {
@@ -25,8 +25,11 @@ export enum Priority {
 }
 
 export interface IWorkSpace {
+  id: number;
   name: string;
-  todos: [];
+  color: string;
+  order: number;
+  sectionIds: number[];
 }
 
 export interface IUser {

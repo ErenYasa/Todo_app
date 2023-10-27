@@ -2,10 +2,11 @@ import React, { ReactElement, Suspense } from 'react';
 import { AuthLayout } from '@/layout/AuthLayout';
 import { Navigate } from 'react-router-dom';
 import { DotsLoader } from '@/components/Loader';
+import { useAppSelector } from '@/store/hooks';
 
 const AuthRoute: React.FC<{ children: React.ReactNode }> = ({ children }): ReactElement => {
-  // const isLoggedIn = useSelector((state: RootState) => state.Auth.isLoggedIn);
-  const isLoggedIn = false;
+  const isLoggedIn = useAppSelector((state) => state.Auth.isLoggedIn);
+
   return isLoggedIn ? (
     <Navigate to="/dashboard" />
   ) : (

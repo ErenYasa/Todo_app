@@ -1,4 +1,4 @@
-import { BaseResponse } from "./BaseResponse";
+import { BaseResponse } from "./response.base";
 
 export class ErrorResponse extends BaseResponse {
   hasError: boolean;

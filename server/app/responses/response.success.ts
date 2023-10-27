@@ -1,4 +1,4 @@
-import { BaseResponse } from "./BaseResponse";
+import { BaseResponse } from "./response.base";
 
 export class SuccessResponse extends BaseResponse {
   data: any;

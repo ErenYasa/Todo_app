@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { ErrorResponse } from "../responses/ErrorResponse";
+import { ErrorResponse } from "../responses/response.error";
 import { errorTypes } from "../config/errorTypes";
 import jwt from "jsonwebtoken";
 import UserModel from "../models/user.model";
@@ -11,6 +11,12 @@ declare global {
     }
   }
 }
+
+type decodedAccessTokenType = {
+  email: string;
+  iat: number;
+  exp: number;
+};
 
 export const isAuth = async (
   req: Request,
@@ -31,9 +37,12 @@ export const isAuth = async (
         );
     }
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY!);
+    const decodedaccessToken = jwt.verify(
+      token,
+      process.env.JWT_SECRET_KEY!
+    ) as decodedAccessTokenType;
 
-    if (!decoded) {
+    if (!decodedaccessToken) {
       return res
         .status(401)
         .send(
@@ -44,9 +53,9 @@ export const isAuth = async (
         );
     }
 
-    const userInfo = await UserModel.findOne({ email: decoded }).select(
-      "_id email"
-    );
+    const userInfo = await UserModel.findOne({
+      email: decodedaccessToken.email,
+    }).select("_id email");
 
     if (!userInfo) {
       return res

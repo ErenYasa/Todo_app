@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import UserModel from "../models/user.model";
-import { ErrorResponse } from "../responses/ErrorResponse";
+import { ErrorResponse } from "../responses/response.error";
 import { errorTypes } from "../config/errorTypes";
-import { SuccessResponse } from "../responses/SuccessResponse";
+import { SuccessResponse } from "../responses/response.success";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
@@ -20,31 +20,16 @@ export async function register(req: Request, res: Response) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const newUser = await UserModel.create({
+    await UserModel.create({
       ...req.body,
       password: hashedPassword,
     });
 
-    const accessToken = jwt.sign(email, process.env.JWT_SECRET_KEY!, {
-      algorithm: "HS512",
-    });
-
-    const cookieOptions = {
-      httpOnly: true,
-      expires: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
-    };
-
-    res
-      .status(201)
-      .cookie("access_token", accessToken, cookieOptions)
-      .send(
-        new SuccessResponse({
-          result: {
-            newUser,
-            accessToken,
-          },
-        })
-      );
+    res.status(201).send(
+      new SuccessResponse({
+        result: true,
+      })
+    );
   } catch (error: any) {
     console.log(error);
 
@@ -76,29 +61,22 @@ export async function login(req: Request, res: Response) {
         .send(new ErrorResponse(errorTypes.SERVER_ERROR, "bigiler yanışke"));
     }
 
-    const accessToken = jwt.sign(email, process.env.JWT_SECRET_KEY!, {
+    const accessToken = jwt.sign({ email }, process.env.JWT_SECRET_KEY!, {
       algorithm: "HS512",
+      expiresIn: "5d",
     });
 
-    const cookieOptions = {
-      httpOnly: true,
-      expires: new Date(Date.now() + 5 * 24 * 60 * 60 * 1000),
-    };
-
-    res
-      .status(200)
-      .cookie("access_token", accessToken, cookieOptions)
-      .send(
-        new SuccessResponse({
-          result: {
-            email: existUser.email,
-            firstName: existUser.firstName,
-            lastName: existUser.lastName,
-            workSpaces: existUser.workSpaces,
-            accessToken,
-          },
-        })
-      );
+    res.status(200).send(
+      new SuccessResponse({
+        result: {
+          email: existUser.email,
+          firstName: existUser.firstName,
+          lastName: existUser.lastName,
+          workSpaces: existUser.workSpaces,
+          accessToken,
+        },
+      })
+    );
   } catch (error: any) {
     console.log(error);
 
@@ -112,15 +90,7 @@ export async function login(req: Request, res: Response) {
 
 export async function logout(req: Request, res: Response) {
   try {
-    const cookieOptions = {
-      httpOnly: true,
-      expires: new Date(Date.now()),
-    };
-
-    res
-      .status(200)
-      .cookie("access_token", null, cookieOptions)
-      .send(new SuccessResponse({ result: {} }));
+    res.status(200).send(new SuccessResponse({ result: true }));
   } catch (error: any) {
     console.log(error);
 

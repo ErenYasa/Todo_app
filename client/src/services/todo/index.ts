@@ -1,19 +1,10 @@
-import { getEnv } from '@helpers/index';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { ITodosResponse, ITodoRequest, ITodoResponse, ITodoUpdateRequest, ITodo } from './interfaces/api.interface';
-import { ISuccessResponse } from './interfaces';
-import { FilterStatus } from '@/types/global';
+import { baseApi } from '..';
 import { toast } from 'react-toastify';
+import { FilterStatus } from '@/types/global';
+import { ISuccessResponse } from '../interfaces';
+import { ITodosResponse, ITodoRequest, ITodoResponse, ITodoUpdateRequest, ITodo } from './interfaces/api.interface';
 
-const setBaseUrl = () => {
-  if (getEnv() === 'DEV') return 'http://localhost:8080/api/';
-  return 'https://mern-todo-app-service.onrender.com/api/';
-};
-
-export const todoService = createApi({
-  reducerPath: 'todoService',
-  baseQuery: fetchBaseQuery({ baseUrl: setBaseUrl() }),
-  tagTypes: ['Todos'],
+export const todoService = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     getTodo: builder.query<ITodoResponse, string>({
       query: (id) => ({
@@ -98,6 +89,7 @@ export const todoService = createApi({
       invalidatesTags: ['Todos'],
     }),
   }),
+  overrideExisting: false,
 });
 
 export const {

@@ -1,7 +1,8 @@
 import { Middleware, configureStore, isRejectedWithValue } from '@reduxjs/toolkit';
 import App from './slices/app.slice';
 import Modal from './slices/modal.slice';
-import { todoService } from '@/services/todo';
+import Auth from './slices/auth.slice';
+import { baseApi } from '@/services/';
 import { toast } from 'react-toastify';
 
 export const rtkQueryErrorLogger: Middleware = () => (next) => (action) => {
@@ -17,10 +18,11 @@ export const store = configureStore({
   reducer: {
     App,
     Modal,
-    [todoService.reducerPath]: todoService.reducer,
+    Auth,
+    [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) => {
-    return getDefaultMiddleware({ serializableCheck: false }).concat(todoService.middleware, rtkQueryErrorLogger);
+    return getDefaultMiddleware({ serializableCheck: false }).concat(baseApi.middleware, rtkQueryErrorLogger);
   },
 });
 

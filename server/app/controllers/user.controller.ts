@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import UserModel from "../models/user.model";
-import { ErrorResponse } from "../responses/ErrorResponse";
+import { ErrorResponse } from "../responses/response.error";
 import { errorTypes } from "../config/errorTypes";
-import { SuccessResponse } from "../responses/SuccessResponse";
+import { SuccessResponse } from "../responses/response.success";
 
 export async function createUser(req: Request, res: Response) {
   try {

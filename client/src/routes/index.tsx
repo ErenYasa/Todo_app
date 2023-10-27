@@ -2,18 +2,19 @@
 
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { lazyWithPreload } from 'react-lazy-with-preload';
-import RegisterPage from '@/views/auth/Register';
-import ResetPasswordPage from '@/views/auth/ResetPassword';
-import NewPasswordPage from '@/views/auth/NewPassword';
 
 const RootRedirect = lazyWithPreload(() => import('./components/RootRedirect'));
 const AuthRoute = lazyWithPreload(() => import('./components/AuthRoute'));
 const ProtectedRoute = lazyWithPreload(() => import('./components/ProtectedRoute'));
 
-const LoginPage = lazyWithPreload(() => import('@views/auth/Login'));
-const ErrorPage = lazyWithPreload(() => import('@views/Error'));
-
 const Dashboard = lazyWithPreload(() => import('@views/Dashboard'));
+
+const RegisterPage = lazyWithPreload(() => import('@views/auth/Register'));
+const LoginPage = lazyWithPreload(() => import('@views/auth/Login'));
+const ResetPasswordPage = lazyWithPreload(() => import('@/views/auth/ResetPassword'));
+const NewPasswordPage = lazyWithPreload(() => import('@/views/auth/NewPassword'));
+
+const ErrorPage = lazyWithPreload(() => import('@views/Error'));
 
 export const Routes = () => {
   const router = createBrowserRouter([

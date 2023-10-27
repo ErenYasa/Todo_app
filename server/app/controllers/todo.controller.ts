@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
 import Fuse from "fuse.js";
 import TodoModel from "../models/todo.model";
-import { ErrorResponse } from "../responses/ErrorResponse";
-import { SuccessResponse } from "../responses/SuccessResponse";
+import { ErrorResponse } from "../responses/response.error";
+import { SuccessResponse } from "../responses/response.success";
 import { errorTypes } from "../config/errorTypes";
 import { FilterStatus, ITodo } from "../types";
 
