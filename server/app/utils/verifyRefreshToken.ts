@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import RefreshTokenModel from "../models/refreshToken.model";
 import { ErrorResponse } from "../responses/response.error";
-import { errorTypes } from "../config/errorTypes";
+import { errorMessages, errorTypes } from "../config/errorTypes";
 
 const verifyRefreshToken = async (
   refreshToken: string
@@ -11,8 +11,8 @@ const verifyRefreshToken = async (
 
     if (!existToken) {
       return new ErrorResponse(
-        errorTypes.REFRESH_TOKEN_INVALID.code,
-        errorTypes.REFRESH_TOKEN_INVALID.message
+        errorTypes.REFRESH_TOKEN_ERROR,
+        errorMessages.REFRESH_TOKEN_INVALID
       );
     }
 
@@ -25,10 +25,7 @@ const verifyRefreshToken = async (
   } catch (error) {
     console.error(error);
 
-    return new ErrorResponse(
-      errorTypes.REFRESH_TOKEN_ERROR.code,
-      errorTypes.REFRESH_TOKEN_ERROR.message
-    );
+    return new ErrorResponse(errorTypes.REFRESH_TOKEN_ERROR, error as string);
   }
 };
 

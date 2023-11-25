@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { ErrorResponse } from "../../responses/response.error";
-import { errorTypes } from "../../config/errorTypes";
+import { errorMessages, errorTypes } from "../../config/errorTypes";
 import jwt from "jsonwebtoken";
 import UserModel from "../../models/user.model";
 import { decodedAccessToken } from "./defs";
@@ -18,8 +18,8 @@ export const isAuth = async (
         .status(404)
         .send(
           new ErrorResponse(
-            errorTypes.SERVER_ERROR,
-            "geçersiz oturum, lütfen giriş yapın"
+            errorTypes.AUTH_MIDDLEWARE_ERROR,
+            errorMessages.NOT_EXIST_ACCESS_TOKEN
           )
         );
     }
@@ -34,8 +34,8 @@ export const isAuth = async (
         .status(401)
         .send(
           new ErrorResponse(
-            errorTypes.SERVER_ERROR,
-            "geçersiz oturum, lütfen giriş yapın"
+            errorTypes.AUTH_MIDDLEWARE_ERROR,
+            errorMessages.ACCESS_TOKEN_INVALID
           )
         );
     }
@@ -47,7 +47,12 @@ export const isAuth = async (
     if (!userInfo) {
       return res
         .status(404)
-        .send(new ErrorResponse(errorTypes.SERVER_ERROR, "user yok"));
+        .send(
+          new ErrorResponse(
+            errorTypes.AUTH_MIDDLEWARE_ERROR,
+            errorMessages.NOT_EXIST_USER
+          )
+        );
     }
 
     req.user = userInfo;
@@ -57,6 +62,8 @@ export const isAuth = async (
 
     return res
       .status(401)
-      .send(new ErrorResponse(errorTypes.SERVER_ERROR, error as string));
+      .send(
+        new ErrorResponse(errorTypes.AUTH_MIDDLEWARE_ERROR, error as string)
+      );
   }
 };

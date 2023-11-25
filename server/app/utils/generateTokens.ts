@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 import RefreshTokenModel from "../models/refreshToken.model";
 import { IUser } from "../types/index";
 import { ErrorResponse } from "../responses/response.error";
-import { errorTypes } from "../config/errorTypes";
+import { errorMessages, errorTypes } from "../config/errorTypes";
 
 const generateTokens = async (user: IUser) => {
   try {
@@ -27,7 +27,7 @@ const generateTokens = async (user: IUser) => {
 
     return new ErrorResponse(
       errorTypes.SERVER_ERROR,
-      "Error generating tokens"
+      errorMessages.TOKENS_GENERATING_ERROR
     );
   }
 };
