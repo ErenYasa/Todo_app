@@ -3,8 +3,8 @@ import Fuse from "fuse.js";
 import TodoModel from "../models/todo.model";
 import { ErrorResponse } from "../responses/response.error";
 import { SuccessResponse } from "../responses/response.success";
-import { errorTypes } from "../config/errorTypes";
-import { FilterStatus, ITodo } from "../types";
+import { errorMessages, errorTypes } from "../config/errorTypes";
+import { FilterStatus } from "../types";
 
 export async function getTodo(req: Request, res: Response) {
   try {
@@ -14,7 +14,12 @@ export async function getTodo(req: Request, res: Response) {
     if (existTodo === null) {
       return res
         .status(500)
-        .send(new ErrorResponse(errorTypes.DOESNOT_EXIST_TODO));
+        .send(
+          new ErrorResponse(
+            errorTypes.TODO_ERROR,
+            errorMessages.DOESNOT_EXIST_TODO
+          )
+        );
     }
 
     res.send(
@@ -34,9 +39,7 @@ export async function getTodo(req: Request, res: Response) {
 
     return res
       .status(404)
-      .send(
-        new ErrorResponse(errorTypes.SERVER_ERROR, error.message as string)
-      );
+      .send(new ErrorResponse(errorTypes.TODO_ERROR, error.message as string));
   }
 }
 
@@ -77,9 +80,7 @@ export async function getTodos(req: Request, res: Response) {
 
     return res
       .status(404)
-      .send(
-        new ErrorResponse(errorTypes.SERVER_ERROR, error.message as string)
-      );
+      .send(new ErrorResponse(errorTypes.TODO_ERROR, error.message as string));
   }
 }
 
@@ -101,9 +102,7 @@ export async function createTodo(req: Request, res: Response) {
 
     return res
       .status(404)
-      .send(
-        new ErrorResponse(errorTypes.SERVER_ERROR, error.message as string)
-      );
+      .send(new ErrorResponse(errorTypes.TODO_ERROR, error.message as string));
   }
 }
 
@@ -117,7 +116,12 @@ export async function updateTodo(req: Request, res: Response) {
     if (existTodo === null) {
       return res
         .status(500)
-        .send(new ErrorResponse(errorTypes.DOESNOT_EXIST_TODO));
+        .send(
+          new ErrorResponse(
+            errorTypes.TODO_ERROR,
+            errorMessages.DOESNOT_EXIST_TODO
+          )
+        );
     }
 
     res.send(
@@ -137,7 +141,7 @@ export async function updateTodo(req: Request, res: Response) {
     return res
       .status(404)
       .send(
-        new ErrorResponse(errorTypes.SERVER_ERROR, error.message as string)
+        new ErrorResponse(errorTypes.TODO_ERROR, error.message as string)
       );
   }
 }
@@ -150,7 +154,12 @@ export async function deleteTodo(req: Request, res: Response) {
     if (existTodo === null) {
       return res
         .status(500)
-        .send(new ErrorResponse(errorTypes.DOESNOT_EXIST_TODO));
+        .send(
+          new ErrorResponse(
+            errorTypes.TODO_ERROR,
+            errorMessages.DOESNOT_EXIST_TODO
+          )
+        );
     }
 
     res.send(new SuccessResponse({ result: true }));
@@ -159,9 +168,7 @@ export async function deleteTodo(req: Request, res: Response) {
 
     return res
       .status(404)
-      .send(
-        new ErrorResponse(errorTypes.SERVER_ERROR, error.message as string)
-      );
+      .send(new ErrorResponse(errorTypes.TODO_ERROR, error.message as string));
   }
 }
 
@@ -172,11 +179,10 @@ export async function deleteAll(req: Request, res: Response) {
     res.send(new SuccessResponse({ result: true }));
   } catch (error: any) {
     console.log(error);
+
     return res
       .status(404)
-      .send(
-        new ErrorResponse(errorTypes.SERVER_ERROR, error.message as string)
-      );
+      .send(new ErrorResponse(errorTypes.TODO_ERROR, error.message as string));
   }
 }
 
@@ -201,7 +207,7 @@ export async function updateAll(req: Request, res: Response) {
     return res
       .status(404)
       .send(
-        new ErrorResponse(errorTypes.SERVER_ERROR, error.message as string)
+        new ErrorResponse(errorTypes.TODO_ERROR, error.message as string)
       );
   }
 }
