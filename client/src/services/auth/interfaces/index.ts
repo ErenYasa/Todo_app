@@ -16,9 +16,11 @@ export interface ILoginRequest {
 }
 
 export interface ILoginResponse {
+  id: number;
   email: string;
   firstName: string;
   lastName: string;
   workSpaces: IWorkSpace[];
   accessToken: string;
+  refreshToken: string;
 }

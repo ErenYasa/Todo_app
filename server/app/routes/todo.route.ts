@@ -8,7 +8,7 @@ import {
   deleteAll,
   updateAll,
 } from "../controllers/todo.controller";
-import { isAuth } from "../middleware/auth.middleware";
+import { isAuth } from "../middleware/auth/auth.middleware";
 
 const route = express.Router();
 

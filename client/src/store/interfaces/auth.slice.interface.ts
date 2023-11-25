@@ -1,10 +1,9 @@
+import { IUser } from '@/types/global';
+
 export interface IAuthState {
   [x: string]: any;
   isLoggedIn: boolean;
-  user: {
-    email: string;
-    firstName: string;
-    lastName: string;
-  } | null;
-  access_token: null;
+  user: IUser | null;
+  access_token: string;
+  refresh_token: string;
 }

@@ -1,3 +1,22 @@
+
+/**
+ * INTERFACES
+ */
+
+export interface IUser {
+  id: number;
+  email: string;
+  firstName: string;
+  lastName: string;
+  // workSpaces?: IWorkSpace[];
+}
+
+/*  */
+
+/**
+ * ENUMS
+ */
+
 export enum ModalNames {
   CREATE_TODO = 'createTodo',
   EDIT_TODO = 'editTodo',
@@ -9,3 +28,11 @@ export enum FilterStatus {
   COMPLETED = 1,
   ALL = 2,
 }
+
+/*  */
+
+/**
+ * TYPES
+ */
+
+/*  */

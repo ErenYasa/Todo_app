@@ -1,22 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import { ErrorResponse } from "../responses/response.error";
-import { errorTypes } from "../config/errorTypes";
+import { ErrorResponse } from "../../responses/response.error";
+import { errorTypes } from "../../config/errorTypes";
 import jwt from "jsonwebtoken";
-import UserModel from "../models/user.model";
-
-declare global {
-  namespace Express {
-    interface Request {
-      user?: any;
-    }
-  }
-}
-
-type decodedAccessTokenType = {
-  email: string;
-  iat: number;
-  exp: number;
-};
+import UserModel from "../../models/user.model";
+import { decodedAccessToken } from "./defs";
 
 export const isAuth = async (
   req: Request,
@@ -28,7 +15,7 @@ export const isAuth = async (
 
     if (!token) {
       return res
-        .status(401)
+        .status(404)
         .send(
           new ErrorResponse(
             errorTypes.SERVER_ERROR,
@@ -37,12 +24,12 @@ export const isAuth = async (
         );
     }
 
-    const decodedaccessToken = jwt.verify(
+    const decodedAccessToken = jwt.verify(
       token,
-      process.env.JWT_SECRET_KEY!
-    ) as decodedAccessTokenType;
+      process.env.ACCESS_TOKEN_KEY!
+    ) as decodedAccessToken;
 
-    if (!decodedaccessToken) {
+    if (!decodedAccessToken) {
       return res
         .status(401)
         .send(
@@ -54,7 +41,7 @@ export const isAuth = async (
     }
 
     const userInfo = await UserModel.findOne({
-      email: decodedaccessToken.email,
+      email: decodedAccessToken.email,
     }).select("_id email");
 
     if (!userInfo) {
@@ -69,12 +56,7 @@ export const isAuth = async (
     console.error(error);
 
     return res
-      .status(404)
-      .send(
-        new ErrorResponse(
-          errorTypes.SERVER_ERROR,
-          "geçersiz oturum, lütfen giriş yapın"
-        )
-      );
+      .status(401)
+      .send(new ErrorResponse(errorTypes.SERVER_ERROR, error as string));
   }
 };

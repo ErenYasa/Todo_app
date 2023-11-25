@@ -5,6 +5,8 @@ import { errorTypes } from "../config/errorTypes";
 import { SuccessResponse } from "../responses/response.success";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import verifyRefreshToken from "../utils/verifyRefreshToken";
+import generateTokens from "../utils/generateTokens";
 
 export async function register(req: Request, res: Response) {
   try {
@@ -61,19 +63,20 @@ export async function login(req: Request, res: Response) {
         .send(new ErrorResponse(errorTypes.SERVER_ERROR, "bigiler yanışke"));
     }
 
-    const accessToken = jwt.sign({ email }, process.env.JWT_SECRET_KEY!, {
-      algorithm: "HS512",
-      expiresIn: "5d",
-    });
+    const { accessToken, refreshToken } = (await generateTokens(
+      existUser
+    )) as any;
 
     res.status(200).send(
       new SuccessResponse({
         result: {
+          id: existUser._id,
           email: existUser.email,
           firstName: existUser.firstName,
           lastName: existUser.lastName,
           workSpaces: existUser.workSpaces,
           accessToken,
+          refreshToken,
         },
       })
     );
@@ -96,6 +99,46 @@ export async function logout(req: Request, res: Response) {
 
     return res
       .status(404)
+      .send(
+        new ErrorResponse(errorTypes.SERVER_ERROR, error.message as string)
+      );
+  }
+}
+
+export async function refreshToken(req: Request, res: Response) {
+  try {
+    const token = req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      return res
+        .status(401)
+        .send(
+          new ErrorResponse(
+            errorTypes.SERVER_ERROR,
+            "geçersiz oturum, lütfen giriş yapın"
+          )
+        );
+    }
+
+    const { tokenDetails } = (await verifyRefreshToken(token)) as any;
+
+    const { accessToken, refreshToken } = (await generateTokens(
+      tokenDetails
+    )) as any;
+
+    res.status(201).send(
+      new SuccessResponse({
+        result: {
+          access_token: accessToken,
+          refresh_token: refreshToken,
+        },
+      })
+    );
+  } catch (error: any) {
+    console.log(error);
+
+    return res
+      .status(401)
       .send(
         new ErrorResponse(errorTypes.SERVER_ERROR, error.message as string)
       );

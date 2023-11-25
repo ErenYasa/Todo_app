@@ -1,3 +1,33 @@
+import { Schema } from "mongoose";
+
+/**
+ * INTERFACES
+ */
+
+export interface IUser {
+  id?: Schema.Types.ObjectId;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  workSpaces?: IWorkSpace[];
+}
+
+export interface IWorkSpace {
+  id: number;
+  name: string;
+  color: string;
+  order: number;
+  sectionIds: number[];
+}
+
+export interface ISection {
+  name: string;
+  color: string;
+  order: number;
+  todosId?: string[];
+}
+
 export interface ITodo {
   title: string;
   desc?: string;
@@ -10,6 +40,18 @@ export interface ITodo {
   workSpaceId?: string;
   order: number;
 }
+
+export interface IRefreshToken {
+  token: string;
+  userId: Schema.Types.ObjectId;
+  expires: Date;
+}
+
+/*  */
+
+/**
+ * ENUMS
+ */
 
 export enum FilterStatus {
   INCOMPLETE = 0,
@@ -24,25 +66,12 @@ export enum Priority {
   URGENT = 3,
 }
 
-export interface IWorkSpace {
-  id: number;
-  name: string;
-  color: string;
-  order: number;
-  sectionIds: number[];
-}
+/*  */
 
-export interface IUser {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  workSpaces?: IWorkSpace[];
-}
-
-export interface ISection {
-  name: string;
-  color: string;
-  order: number;
-  todosId?: string[];
+declare global {
+  namespace Express {
+    interface Request {
+      user?: any;
+    }
+  }
 }

@@ -2,7 +2,7 @@ import { toast } from 'react-toastify';
 import { baseApi } from '..';
 import { ISuccessResponse } from '../interfaces';
 import { ILoginRequest, ILoginResponse, IRegisterRequest } from './interfaces';
-import { clearTokens, setIsLoggedIn, setTokens } from '@/store/slices/auth.slice';
+import { clearTokens, setIsLoggedIn, setTokens, setUserInfo } from '@/store/slices/auth.slice';
 
 const authApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
@@ -29,7 +29,15 @@ const authApi = baseApi.injectEndpoints({
       transformResponse: (response: ISuccessResponse<ILoginResponse>) => response.data.result,
       async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
         queryFulfilled.then((res) => {
-          dispatch(setTokens({ access_token: res.data.accessToken }));
+          dispatch(setTokens({ access_token: res.data.accessToken, refresh_token: res.data.refreshToken }));
+          dispatch(
+            setUserInfo({
+              id: res.data.id,
+              email: res.data.email,
+              firstName: res.data.firstName,
+              lastName: res.data.lastName,
+            }),
+          );
           dispatch(setIsLoggedIn(true));
         });
       },
@@ -41,7 +49,7 @@ const authApi = baseApi.injectEndpoints({
       transformResponse: (response: ISuccessResponse<boolean>) => response.data.result,
       async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
         queryFulfilled.then(() => {
-          dispatch(clearTokens());
+          dispatch(clearTokens(''));
           dispatch(authApi.util.resetApiState());
         });
       },
