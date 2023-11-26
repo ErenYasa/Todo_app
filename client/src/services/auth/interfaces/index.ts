@@ -1,7 +1,4 @@
-export interface IWorkSpace {
-  name: string;
-  todos: [];
-}
+import { IWorkSpace } from '@/types/global';
 
 export interface IRegisterRequest {
   email: string;

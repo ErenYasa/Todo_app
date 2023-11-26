@@ -14,7 +14,7 @@ export interface IUser {
 }
 
 export interface IWorkSpace {
-  id: number;
+  id: string;
   name: string;
   color: string;
   order: number;

@@ -1,14 +1,21 @@
-
 /**
  * INTERFACES
  */
+
+export interface IWorkSpace {
+  id: string;
+  name: string;
+  color: string;
+  order: number;
+  sectionIds: number[];
+}
 
 export interface IUser {
   id: number;
   email: string;
   firstName: string;
   lastName: string;
-  // workSpaces?: IWorkSpace[];
+  workSpaces: IWorkSpace[];
 }
 
 /*  */

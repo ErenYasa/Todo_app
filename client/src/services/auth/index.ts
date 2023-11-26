@@ -30,14 +30,17 @@ const authApi = baseApi.injectEndpoints({
       async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
         queryFulfilled.then((res) => {
           dispatch(setTokens({ access_token: res.data.accessToken, refresh_token: res.data.refreshToken }));
+
           dispatch(
             setUserInfo({
               id: res.data.id,
               email: res.data.email,
               firstName: res.data.firstName,
               lastName: res.data.lastName,
+              workSpaces: res.data.workSpaces,
             }),
           );
+          
           dispatch(setIsLoggedIn(true));
         });
       },
