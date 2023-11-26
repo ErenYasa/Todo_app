@@ -18,17 +18,19 @@ export const AuthSlice: Slice<IAuthState> = createSlice({
       state.access_token = payload.access_token;
       state.refresh_token = payload.refresh_token;
 
-      Cookies.set('access_token', payload.access_token);
-      Cookies.set('refresh_token', payload.refresh_token);
+      Cookies.set(`${process.env.APP_NAME}_access_token`, payload.access_token);
+      Cookies.set(`${process.env.APP_NAME}_refresh_token`, payload.refresh_token);
     },
     clearTokens: (state) => {
       state.isLoggedIn = false;
 
-      const tokens = ['access_token', 'refresh_token'];
+      const tokens = [`${process.env.APP_NAME}_access_token`, `${process.env.APP_NAME}_refresh_token`];
       tokens.forEach((token) => {
         state[token] = '';
         Cookies.remove(token);
       });
+
+      localStorage.removeItem(`${process.env.APP_NAME}_user`);
     },
     setIsLoggedIn: (state, { payload }: PayloadAction<boolean>) => {
       state.isLoggedIn = payload;
@@ -39,7 +41,10 @@ export const AuthSlice: Slice<IAuthState> = createSlice({
         email: payload.email,
         firstName: payload.firstName,
         lastName: payload.lastName,
+        workSpaces: payload.workSpaces,
       };
+
+      localStorage.setItem(`${process.env.APP_NAME}_user`, JSON.stringify(state.user));
     },
   },
 });

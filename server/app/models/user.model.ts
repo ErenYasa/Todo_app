@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema<IUser>(
       required: false,
       default: [
         {
-          id: uuidv4() as unknown as number,
+          id: uuidv4() as unknown as string,
           name: "Default",
           color: "#0000FF",
           order: 0,

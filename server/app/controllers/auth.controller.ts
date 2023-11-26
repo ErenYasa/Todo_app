@@ -142,7 +142,10 @@ export async function refreshToken(req: Request, res: Response) {
     return res
       .status(401)
       .send(
-        new ErrorResponse(errorTypes.REFRESH_TOKEN_ERROR, error.message as string)
+        new ErrorResponse(
+          errorTypes.REFRESH_TOKEN_ERROR,
+          error.message as string
+        )
       );
   }
 }

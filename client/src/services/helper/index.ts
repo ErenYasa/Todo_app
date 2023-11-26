@@ -15,8 +15,8 @@ export const baseQuery = fetchBaseQuery({
   baseUrl: setBaseUrl(),
   credentials: 'same-origin',
   prepareHeaders: (headers, { endpoint }) => {
-    const accessToken = Cookies.get('access_token');
-    const refreshToken = Cookies.get('refresh_token');
+    const accessToken = Cookies.get(`${process.env.APP_NAME}_access_token`);
+    const refreshToken = Cookies.get(`${process.env.APP_NAME}_refresh_token`);
 
     if (accessToken) {
       headers.set('authorization', `Bearer ${accessToken}`);
@@ -44,7 +44,7 @@ export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, Fetch
       const release = await mutex.acquire();
 
       try {
-        if (Cookies.get('refresh_token')) {
+        if (Cookies.get(`${process.env.APP_NAME}_refresh_token`)) {
           const refreshResult = (await baseQuery(
             {
               url: 'auth/refresh-token',

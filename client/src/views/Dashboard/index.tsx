@@ -1,11 +1,15 @@
-import { MainBody } from '../../components/MainBody';
-import { MainHeader } from '../../components/MainHeader';
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
+import { DotsLoader } from '@/components/Loader';
 
 export default function Dashboard() {
   return (
     <main className="main">
-      <MainHeader />
-      <MainBody />
+      {/* <MainHeader />
+      <MainBody /> */}
+      <Suspense fallback={<DotsLoader />}>
+        <Outlet />
+      </Suspense>
     </main>
   );
 }

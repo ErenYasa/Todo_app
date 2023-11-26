@@ -1,10 +1,16 @@
 import { useLazyLogoutQuery } from '@/services/auth';
-import { useAppSelector } from '@/store/hooks';
 import { IUser } from '@/types/global';
+import { Link } from 'react-router-dom';
+import { useReadLocalStorage } from 'usehooks-ts';
 
 export function Header() {
   /* STATES & VARIABLES */
-  const { firstName, lastName } = useAppSelector((state) => state.Auth.user as IUser);
+  /*  */
+  
+  /* HOOKS */
+  const userInfo = useReadLocalStorage(`${process.env.APP_NAME}_user`) as IUser;
+  /*  */ 
+  
   /* Queries */
   const [logout] = useLazyLogoutQuery();
   /*  */
@@ -13,11 +19,19 @@ export function Header() {
   const handleLogout = () => {
     logout('');
   };
+
   /*  */
 
   return (
     <header className="header">
-      My Todos - {firstName} {lastName}
+      <Link to="/">My Todos</Link> - {userInfo.firstName} {userInfo.lastName}
+      <div>
+        {userInfo.workSpaces.map((space) => (
+          <Link key={space.id} to={`work-space/${space.id}`}>
+            {space.name}
+          </Link>
+        ))}
+      </div>
       <button onClick={handleLogout}>Logout</button>
     </header>
   );

@@ -7,7 +7,9 @@ const RootRedirect = lazyWithPreload(() => import('./components/RootRedirect'));
 const AuthRoute = lazyWithPreload(() => import('./components/AuthRoute'));
 const ProtectedRoute = lazyWithPreload(() => import('./components/ProtectedRoute'));
 
-const Dashboard = lazyWithPreload(() => import('@views/Dashboard'));
+const Dashboard = lazyWithPreload(() => import('@/views/dashboard'));
+const Welcome = lazyWithPreload(() => import('@/views/dashboard/partials/Welcome'));
+const WorkSpace = lazyWithPreload(() => import('@/views/dashboard/partials/WorkSpace'));
 
 const RegisterPage = lazyWithPreload(() => import('@views/auth/Register'));
 const LoginPage = lazyWithPreload(() => import('@views/auth/Login'));
@@ -67,6 +69,16 @@ export const Routes = () => {
         </ProtectedRoute>
       ),
       errorElement: <ErrorPage />,
+      children: [
+        {
+          index: true,
+          element: <Welcome />,
+        },
+        {
+          path: 'work-space/:id',
+          element: <WorkSpace />,
+        },
+      ],
     },
   ]);
 
