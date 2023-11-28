@@ -5,8 +5,9 @@ import { ErrorResponse } from "../responses/response.error";
 import { SuccessResponse } from "../responses/response.success";
 import { errorMessages, errorTypes } from "../config/errorTypes";
 import { FilterStatus } from "../types";
+import UserModel from "../models/user.model";
 
-export async function getTodo(req: Request, res: Response) {
+export async function get(req: Request, res: Response) {
   try {
     const { id } = req.params;
     const existTodo = await TodoModel.findById(id);
@@ -43,7 +44,7 @@ export async function getTodo(req: Request, res: Response) {
   }
 }
 
-export async function getTodos(req: Request, res: Response) {
+export async function getAll(req: Request, res: Response) {
   try {
     const { q, status } = req.query;
     let todos;
@@ -84,7 +85,7 @@ export async function getTodos(req: Request, res: Response) {
   }
 }
 
-export async function createTodo(req: Request, res: Response) {
+export async function create(req: Request, res: Response) {
   try {
     const newTodo = await TodoModel.create(req.body);
 
@@ -106,7 +107,7 @@ export async function createTodo(req: Request, res: Response) {
   }
 }
 
-export async function updateTodo(req: Request, res: Response) {
+export async function update(req: Request, res: Response) {
   try {
     const { id } = req.params;
     const existTodo = await TodoModel.findByIdAndUpdate(id, req.body, {
@@ -140,13 +141,11 @@ export async function updateTodo(req: Request, res: Response) {
 
     return res
       .status(404)
-      .send(
-        new ErrorResponse(errorTypes.TODO_ERROR, error.message as string)
-      );
+      .send(new ErrorResponse(errorTypes.TODO_ERROR, error.message as string));
   }
 }
 
-export async function deleteTodo(req: Request, res: Response) {
+export async function _delete(req: Request, res: Response) {
   try {
     const { id } = req.params;
     const existTodo = await TodoModel.findByIdAndRemove(id);
@@ -206,8 +205,6 @@ export async function updateAll(req: Request, res: Response) {
   } catch (error: any) {
     return res
       .status(404)
-      .send(
-        new ErrorResponse(errorTypes.TODO_ERROR, error.message as string)
-      );
+      .send(new ErrorResponse(errorTypes.TODO_ERROR, error.message as string));
   }
 }

@@ -1,8 +1,8 @@
 import { baseApi } from '..';
 import { toast } from 'react-toastify';
 import { FilterStatus } from '@/types/global';
-import { ISuccessResponse } from '../interfaces';
-import { ITodosResponse, ITodoRequest, ITodoResponse, ITodoUpdateRequest, ITodo } from './interfaces/api.interface';
+import { ISuccessResponse } from '../defs';
+import { ITodosResponse, ITodoRequest, ITodoResponse, ITodoUpdateRequest, ITodo } from './defs/api.interface';
 
 export const todoService = baseApi.injectEndpoints({
   endpoints: (builder) => ({

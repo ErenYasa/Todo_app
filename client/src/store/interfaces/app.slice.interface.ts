@@ -1,5 +1,5 @@
 import { FilterStatus } from '@/types/global';
-import { ITodosResponse } from '../../services/todo/interfaces/api.interface';
+import { ITodosResponse } from '../../services/todo/defs/api.interface';
 
 export interface IAppState {
   [x: string]: any;

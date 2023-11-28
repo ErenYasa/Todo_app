@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 import { v4 as uuidv4 } from "uuid";
-import { IUser, IWorkSpace } from "../types";
+import { IUser, IWorkspace } from "../types";
 
 const userSchema = new mongoose.Schema<IUser>(
   {
@@ -8,19 +8,6 @@ const userSchema = new mongoose.Schema<IUser>(
     password: { type: String, required: true },
     firstName: { type: String, required: true },
     lastName: { type: String, required: true },
-    workSpaces: {
-      type: Array,
-      required: false,
-      default: [
-        {
-          id: uuidv4() as unknown as string,
-          name: "Default",
-          color: "#0000FF",
-          order: 0,
-          sectionIds: [],
-        },
-      ] as IWorkSpace[],
-    },
   },
   { timestamps: true }
 );

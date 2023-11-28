@@ -9,7 +9,7 @@ const ProtectedRoute = lazyWithPreload(() => import('./components/ProtectedRoute
 
 const Dashboard = lazyWithPreload(() => import('@/views/dashboard'));
 const Welcome = lazyWithPreload(() => import('@/views/dashboard/partials/Welcome'));
-const WorkSpace = lazyWithPreload(() => import('@/views/dashboard/partials/WorkSpace'));
+const Workspace = lazyWithPreload(() => import('@/views/dashboard/partials/Workspace'));
 
 const RegisterPage = lazyWithPreload(() => import('@views/auth/Register'));
 const LoginPage = lazyWithPreload(() => import('@views/auth/Login'));
@@ -76,7 +76,7 @@ export const Routes = () => {
         },
         {
           path: 'work-space/:id',
-          element: <WorkSpace />,
+          element: <Workspace />,
         },
       ],
     },

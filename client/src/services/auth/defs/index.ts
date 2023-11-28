@@ -1,5 +1,3 @@
-import { IWorkSpace } from '@/types/global';
-
 export interface IRegisterRequest {
   email: string;
   firstName: string;
@@ -17,7 +15,6 @@ export interface ILoginResponse {
   email: string;
   firstName: string;
   lastName: string;
-  workSpaces: IWorkSpace[];
   accessToken: string;
   refreshToken: string;
 }

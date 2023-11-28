@@ -1,10 +1,10 @@
 import { toast } from 'react-toastify';
 import { baseApi } from '..';
-import { ISuccessResponse } from '../interfaces';
-import { ILoginRequest, ILoginResponse, IRegisterRequest } from './interfaces';
+import { ISuccessResponse } from '../defs';
+import { ILoginRequest, ILoginResponse, IRegisterRequest } from './defs';
 import { clearTokens, setIsLoggedIn, setTokens, setUserInfo } from '@/store/slices/auth.slice';
 
-const authApi = baseApi.injectEndpoints({
+const authService = baseApi.injectEndpoints({
   endpoints: (builder) => ({
     register: builder.mutation<boolean, IRegisterRequest>({
       query: (body) => ({
@@ -16,7 +16,7 @@ const authApi = baseApi.injectEndpoints({
       async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
         queryFulfilled.then(() => {
           toast.success("You've been registered successfully");
-          dispatch(authApi.endpoints.login.initiate({ email: _arg.email, password: _arg.password }));
+          dispatch(authService.endpoints.login.initiate({ email: _arg.email, password: _arg.password }));
         });
       },
     }),
@@ -37,10 +37,9 @@ const authApi = baseApi.injectEndpoints({
               email: res.data.email,
               firstName: res.data.firstName,
               lastName: res.data.lastName,
-              workSpaces: res.data.workSpaces,
             }),
           );
-          
+
           dispatch(setIsLoggedIn(true));
         });
       },
@@ -53,7 +52,7 @@ const authApi = baseApi.injectEndpoints({
       async onQueryStarted(_arg, { dispatch, queryFulfilled }) {
         queryFulfilled.then(() => {
           dispatch(clearTokens(''));
-          dispatch(authApi.util.resetApiState());
+          dispatch(authService.util.resetApiState());
         });
       },
     }),
@@ -61,4 +60,4 @@ const authApi = baseApi.injectEndpoints({
   overrideExisting: false,
 });
 
-export const { useRegisterMutation, useLoginMutation, useLogoutQuery, useLazyLogoutQuery } = authApi;
+export const { useRegisterMutation, useLoginMutation, useLogoutQuery, useLazyLogoutQuery } = authService;
