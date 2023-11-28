@@ -3,7 +3,7 @@ import { openModal } from '@store/slices/modal.slice';
 import * as Icon from '@components/Icons';
 import { ChangeEvent, useRef } from 'react';
 import { ModalNames } from '@/types/global';
-import { ITodoResponse } from '@/services/todo/interfaces/api.interface';
+import { ITodoResponse } from '@/services/todo/defs/api.interface';
 import { formatDate } from '@/helpers';
 import { useUpdateTodoMutation } from '@/services/todo';
 import classNames from 'classnames';

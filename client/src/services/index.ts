@@ -4,6 +4,6 @@ import { baseQueryWithReauth } from './helper';
 export const baseApi = createApi({
   reducerPath: 'api',
   baseQuery: baseQueryWithReauth,
-  tagTypes: ['Todos'],
+  tagTypes: ['Todos', 'Workspaces'],
   endpoints: () => ({}),
 });

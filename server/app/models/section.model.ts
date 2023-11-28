@@ -1,12 +1,12 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 import { ISection } from "../types";
 
 const sectionSchema = new mongoose.Schema<ISection>(
   {
     name: { type: String, required: true, trim: true },
     color: { type: String, required: true, trim: true },
-    order: { type: Number, required: true, default: 0 },
-    todosId: { type: Array, default: [] },
+    order: { type: Number, required: true },
+    workspaceId: { type: Schema.Types.ObjectId, required: true },
   },
   { timestamps: true }
 );

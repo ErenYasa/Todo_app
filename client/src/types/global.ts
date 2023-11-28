@@ -2,12 +2,11 @@
  * INTERFACES
  */
 
-export interface IWorkSpace {
-  id: string;
+export interface IWorkspace {
   name: string;
   color: string;
   order: number;
-  sectionIds: number[];
+  userId: string;
 }
 
 export interface IUser {
@@ -15,7 +14,6 @@ export interface IUser {
   email: string;
   firstName: string;
   lastName: string;
-  workSpaces: IWorkSpace[];
 }
 
 /*  */

@@ -6,6 +6,7 @@ import { SuccessResponse } from "../responses/response.success";
 import bcrypt from "bcrypt";
 import verifyRefreshToken from "../utils/verifyRefreshToken";
 import generateTokens from "../utils/generateTokens";
+import workspaceModel from "../models/workspace.model";
 
 export async function register(req: Request, res: Response) {
   try {
@@ -23,10 +24,20 @@ export async function register(req: Request, res: Response) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    await UserModel.create({
+    const createdUser = await UserModel.create({
       ...req.body,
       password: hashedPassword,
     });
+
+    /* CREATE A WORKSPACE AS DEFAULT */
+    await workspaceModel.create({
+      name: "Default Workspace",
+      color: "#000000",
+      order: 0,
+      userId: createdUser._id,
+      sectionIds: [],
+    });
+    /*  */
 
     res.status(201).send(
       new SuccessResponse({
@@ -80,7 +91,6 @@ export async function login(req: Request, res: Response) {
           email: existUser.email,
           firstName: existUser.firstName,
           lastName: existUser.lastName,
-          workSpaces: existUser.workSpaces,
           accessToken,
           refreshToken,
         },

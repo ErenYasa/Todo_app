@@ -10,22 +10,20 @@ export interface IUser {
   password: string;
   firstName: string;
   lastName: string;
-  workSpaces?: IWorkSpace[];
 }
 
-export interface IWorkSpace {
-  id: string;
+export interface IWorkspace {
+  userId: Schema.Types.ObjectId;
   name: string;
   color: string;
-  order: number;
-  sectionIds: number[];
+  order?: number;
 }
 
 export interface ISection {
   name: string;
   color: string;
   order: number;
-  todosId?: string[];
+  workspaceId: Schema.Types.ObjectId;
 }
 
 export interface ITodo {
@@ -37,7 +35,7 @@ export interface ITodo {
   deletedAt: Date | null;
   priority: number;
   sectionId?: string;
-  workSpaceId?: string;
+  workspaceId?: string;
   order: number;
 }
 

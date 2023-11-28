@@ -41,10 +41,10 @@ export const AuthSlice: Slice<IAuthState> = createSlice({
         email: payload.email,
         firstName: payload.firstName,
         lastName: payload.lastName,
-        workSpaces: payload.workSpaces,
       };
 
       localStorage.setItem(`${process.env.APP_NAME}_user`, JSON.stringify(state.user));
+      localStorage.setItem(`${process.env.APP_NAME}_userId`, String(payload.id));
     },
   },
 });

@@ -17,7 +17,7 @@ const todoSchema = new mongoose.Schema<ITodo>(
       enum: Priority,
     },
     sectionId: { type: Number, required: true },
-    workSpaceId: { type: Number, required: true },
+    workspaceId: { type: Number, required: true },
     order: { type: Number, required: true, default: 0 },
   },
   { timestamps: true }
