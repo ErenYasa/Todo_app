@@ -7,6 +7,7 @@ import bcrypt from "bcrypt";
 import verifyRefreshToken from "../utils/verifyRefreshToken";
 import generateTokens from "../utils/generateTokens";
 import workspaceModel from "../models/workspace.model";
+import SectionModel from "../models/section.model";
 
 export async function register(req: Request, res: Response) {
   try {
@@ -29,14 +30,29 @@ export async function register(req: Request, res: Response) {
       password: hashedPassword,
     });
 
-    /* CREATE A WORKSPACE AS DEFAULT */
-    await workspaceModel.create({
-      name: "Default Workspace",
-      color: "#000000",
-      order: 0,
-      userId: createdUser._id,
-      sectionIds: [],
-    });
+    /* CREATE A WORKSPACE AND SECTIONS AS DEFAULT */
+    await workspaceModel
+      .create({
+        name: "Default Workspace",
+        color: "#000000",
+        order: 0,
+        userId: createdUser._id,
+      })
+      .then((workspace) => {
+        const defaultSectionList = [
+          { name: "My routines", color: "#000000", order: 0 },
+          { name: "Inspiration", color: "#000000", order: 1 },
+          { name: "Special for today", color: "#000000", order: 2 },
+        ];
+
+        defaultSectionList.forEach(async (section) => {
+          await SectionModel.create({
+            ...section,
+            workspaceId: workspace._id,
+            userId: createdUser._id,
+          });
+        });
+      });
     /*  */
 
     res.status(201).send(
