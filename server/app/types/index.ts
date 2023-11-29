@@ -30,14 +30,15 @@ export interface ISection {
 export interface ITodo {
   title: string;
   desc?: string;
-  status: number;
+  status?: FilterStatus;
+  priority?: Priority;
+  order?: number;
+  sectionId: Schema.Types.ObjectId;
+  workspaceId: Schema.Types.ObjectId;
+  userId: Schema.Types.ObjectId;
   createdAt: Date;
   updatedAt: Date;
-  deletedAt: Date | null;
-  priority: number;
-  sectionId?: string;
-  workspaceId?: string;
-  order: number;
+  deletedAt?: Date | null;
 }
 
 export interface IRefreshToken {

@@ -2,6 +2,19 @@
  * INTERFACES
  */
 
+export interface ITodo {
+  _id: string;
+  title: string;
+  desc?: string;
+  status?: FilterStatus;
+  priority?: Priority;
+  order?: number;
+  sectionId: string;
+  workspaceId: string;
+  userId: string;
+  deletedAt?: Date | null;
+}
+
 export interface ISection {
   id: string;
   name: string;
@@ -42,6 +55,13 @@ export enum FilterStatus {
   INCOMPLETE = 0,
   COMPLETED = 1,
   ALL = 2,
+}
+
+export enum Priority {
+  LOW = 0,
+  MEDIUM = 1,
+  HIGH = 2,
+  URGENT = 3,
 }
 
 /*  */

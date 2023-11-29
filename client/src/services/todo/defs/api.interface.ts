@@ -1,11 +1,4 @@
-import { FilterStatus } from '@/types/global';
-
-export interface ITodo {
-  _id: string;
-  title: string;
-  desc: string;
-  status: number;
-}
+import { FilterStatus, ITodo } from '@/types/global';
 
 export interface ITodoRequest {
   title?: string;
@@ -22,18 +15,12 @@ export type ITodosResponse = ITodoResponse[];
 
 export interface ITodoUpdateRequest {
   _id: string;
-  body: {
-    title?: string;
-    desc?: string;
-    status?: number;
-  };
+  body: Omit<ITodo, 'title' | 'desc' | 'status' | 'priority' | 'order' | 'sectionId' | 'deletedAt'>;
 }
 
 export interface ITodoUpdateStatusRequest {
   _id: string;
-  body: {
-    status: number;
-  };
+  body: Pick<ITodo, 'status'>;
 }
 
 export interface IDeleteAllResponse {
