@@ -5,7 +5,6 @@ import { ErrorResponse } from "../responses/response.error";
 import { SuccessResponse } from "../responses/response.success";
 import { errorMessages, errorTypes } from "../config/errorTypes";
 import { FilterStatus } from "../types";
-import UserModel from "../models/user.model";
 
 export async function get(req: Request, res: Response) {
   try {
@@ -26,12 +25,18 @@ export async function get(req: Request, res: Response) {
     res.send(
       new SuccessResponse({
         result: {
-          id: existTodo.id,
+          id: existTodo._id,
           title: existTodo.title,
           desc: existTodo.desc,
           status: existTodo.status,
+          priority: existTodo.priority,
+          order: existTodo.order,
+          sectionId: existTodo.sectionId,
+          workspaceId: existTodo.workspaceId,
+          userId: existTodo.userId,
           createdAt: existTodo.createdAt,
           updatedAt: existTodo.updatedAt,
+          deletedAt: existTodo.deletedAt,
         },
       })
     );
@@ -92,9 +97,16 @@ export async function create(req: Request, res: Response) {
     res.status(201).send(
       new SuccessResponse({
         result: {
-          id: newTodo.id,
+          id: newTodo._id,
           title: newTodo.title,
           desc: newTodo.desc,
+          status: newTodo.status,
+          priority: newTodo.priority,
+          order: newTodo.order,
+          sectionId: newTodo.sectionId,
+          workspaceId: newTodo.workspaceId,
+          userId: newTodo.userId,
+          createdAt: newTodo.createdAt,
         },
       })
     );
@@ -132,7 +144,14 @@ export async function update(req: Request, res: Response) {
           title: existTodo.title,
           desc: existTodo.desc,
           status: existTodo.status,
+          priority: existTodo.priority,
+          order: existTodo.order,
+          sectionId: existTodo.sectionId,
+          workspaceId: existTodo.workspaceId,
+          userId: existTodo.userId,
+          createdAt: existTodo.createdAt,
           updatedAt: existTodo.updatedAt,
+          deletedAt: existTodo.deletedAt,
         },
       })
     );
