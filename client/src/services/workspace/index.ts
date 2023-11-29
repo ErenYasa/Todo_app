@@ -38,7 +38,7 @@ const workspaceService = baseApi.injectEndpoints({
       }),
       onQueryStarted(_arg, { queryFulfilled }) {
         queryFulfilled.then(() => {
-          toast.success('Work Space created successfully');
+          toast.success('Workspace created successfully');
         });
       },
       invalidatesTags: ['Workspaces'],
@@ -51,9 +51,10 @@ const workspaceService = baseApi.injectEndpoints({
       }),
       onQueryStarted(_arg, { queryFulfilled }) {
         queryFulfilled.then(() => {
-          toast.success('Work Space updated successfully');
+          toast.success('Workspace updated successfully');
         });
       },
+      invalidatesTags: ['Workspaces'],
       transformResponse: (response: ISuccessResponse<IWorkspace>) => response.data.result,
     }),
     deleteWorkspace: builder.mutation<boolean, string>({
@@ -63,7 +64,7 @@ const workspaceService = baseApi.injectEndpoints({
       }),
       onQueryStarted(_arg, { queryFulfilled }) {
         queryFulfilled.then(() => {
-          toast.success('Work Space deleted successfully');
+          toast.success('Workspace deleted successfully');
         });
       },
       invalidatesTags: ['Workspaces'],

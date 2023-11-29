@@ -1,12 +1,12 @@
 import express from "express";
-import { _delete, create, get, getAll, update } from "../controllers/workspace.controller";
 import { isAuth } from "../middleware/auth/auth.middleware";
+import { _delete, create, get, getAll, update } from "../controllers/section.controller";
 
 const router = express.Router();
 
 router.get("/:id", isAuth, get);
 
-router.get("/:userId", isAuth, getAll)
+router.get("/:userId", isAuth, getAll);
 
 router.post("/", isAuth, create);
 

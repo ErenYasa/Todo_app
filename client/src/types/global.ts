@@ -2,7 +2,17 @@
  * INTERFACES
  */
 
+export interface ISection {
+  id: string;
+  name: string;
+  color: string;
+  order: number;
+  workspaceId: string;
+  userId: string;
+}
+
 export interface IWorkspace {
+  id: string;
   name: string;
   color: string;
   order: number;
@@ -10,7 +20,7 @@ export interface IWorkspace {
 }
 
 export interface IUser {
-  id: number;
+  id: string;
   email: string;
   firstName: string;
   lastName: string;

@@ -7,10 +7,11 @@ const sectionSchema = new mongoose.Schema<ISection>(
     color: { type: String, required: true, trim: true },
     order: { type: Number, required: true },
     workspaceId: { type: Schema.Types.ObjectId, required: true },
+    userId: { type: Schema.Types.ObjectId, required: true },
   },
   { timestamps: true }
 );
 
-const sectionModel = mongoose.model("SectionModel", sectionSchema);
+const SectionModel = mongoose.model("SectionModel", sectionSchema);
 
-export default sectionModel;
+export default SectionModel;
