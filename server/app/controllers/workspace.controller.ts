@@ -4,12 +4,14 @@ import { ErrorResponse } from "../responses/response.error";
 import { errorMessages, errorTypes } from "../config/errorTypes";
 import UserModel from "../models/user.model";
 import { SuccessResponse } from "../responses/response.success";
-import workspaceModel from "../models/workspace.model";
+import WorkspaceModel from "../models/workspace.model";
+import SectionModel from "../models/section.model";
+import TodoModel from "../models/todo.model";
 
 export async function get(req: Request, res: Response) {
   try {
     const { id } = req.params;
-    const existWorkspace = await workspaceModel.findById(id);
+    const existWorkspace = await WorkspaceModel.findById(id);
 
     if (existWorkspace === null) {
       return res
@@ -17,7 +19,7 @@ export async function get(req: Request, res: Response) {
         .send(
           new ErrorResponse(
             errorTypes.WORKSPACE_ERROR,
-            errorMessages.NOT_EXIST_SECTION
+            errorMessages.NOT_EXIST_WORKSPACE
           )
         );
     }
@@ -46,7 +48,7 @@ export async function get(req: Request, res: Response) {
 export async function getAll(req: Request, res: Response) {
   try {
     const { userId } = req.params;
-    const userRelatedWorkspaces = await workspaceModel.find({ userId });
+    const userRelatedWorkspaces = await WorkspaceModel.find({ userId });
 
     if (!userRelatedWorkspaces) {
       return res
@@ -90,7 +92,7 @@ export async function create(req: Request, res: Response) {
         );
     }
 
-    const newWorkspace = workspaceModel.create(req.body);
+    const newWorkspace = WorkspaceModel.create(req.body);
 
     res.send(
       new SuccessResponse({
@@ -111,7 +113,7 @@ export async function create(req: Request, res: Response) {
 export async function update(req: Request, res: Response) {
   try {
     const { id } = req.params;
-    const updatedWorkspace = await workspaceModel.findByIdAndUpdate(
+    const updatedWorkspace = await WorkspaceModel.findByIdAndUpdate(
       id,
       req.body,
       { new: true } // This is used to return the updated document
@@ -131,7 +133,7 @@ export async function update(req: Request, res: Response) {
     res.send(
       new SuccessResponse({
         result: {
-          id: updatedWorkspace.id,
+          id: updatedWorkspace._id,
           name: updatedWorkspace.name,
           color: updatedWorkspace.color,
           order: updatedWorkspace.order,
@@ -152,7 +154,7 @@ export async function update(req: Request, res: Response) {
 export async function _delete(req: Request, res: Response) {
   try {
     const { id } = req.params;
-    const workspaceToBeDeleted = await workspaceModel.findByIdAndRemove(id);
+    const workspaceToBeDeleted = await WorkspaceModel.findByIdAndRemove(id);
 
     if (workspaceToBeDeleted === null) {
       return res
@@ -160,10 +162,15 @@ export async function _delete(req: Request, res: Response) {
         .json(
           new ErrorResponse(
             errorTypes.WORKSPACE_ERROR,
-            errorMessages.NOT_EXIST_USER
+            errorMessages.NOT_EXIST_WORKSPACE
           )
         );
     }
+
+    /* Delete all owned sections and todos */
+    await SectionModel.deleteMany({ workspaceId: id });
+    await TodoModel.deleteMany({ workspaceId: id });
+    /*  */
 
     res.send(new SuccessResponse({ result: true }));
   } catch (error: any) {

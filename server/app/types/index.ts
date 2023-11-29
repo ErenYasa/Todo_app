@@ -13,10 +13,10 @@ export interface IUser {
 }
 
 export interface IWorkspace {
-  userId: Schema.Types.ObjectId;
   name: string;
   color: string;
   order?: number;
+  userId: Schema.Types.ObjectId;
 }
 
 export interface ISection {
@@ -24,6 +24,7 @@ export interface ISection {
   color: string;
   order: number;
   workspaceId: Schema.Types.ObjectId;
+  userId: Schema.Types.ObjectId;
 }
 
 export interface ITodo {

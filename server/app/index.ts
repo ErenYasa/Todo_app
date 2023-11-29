@@ -7,7 +7,8 @@ import helmet from "helmet";
 import { db } from "./config/db";
 import todoRoute from "./routes/todo.route";
 import authRoute from "./routes/auth.route";
-import workspaceRoute from "./routes/workSpace.route";
+import workspaceRoute from "./routes/workspace.route";
+import sectionRoute from "./routes/section.route";
 
 const app = express();
 
@@ -57,8 +58,9 @@ app.get("/", (_req: Request, res: Response) => {
 
 /* ROUTES */
 app.use("/api/auth", authRoute);
-app.use("/api", todoRoute);
 app.use("/api/workspace", workspaceRoute);
+app.use("/api/section", sectionRoute);
+app.use("/api", todoRoute);
 /*  */
 
 app.listen(process.env.PORT, () => {
