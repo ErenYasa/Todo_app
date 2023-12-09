@@ -1,72 +1,72 @@
 @mixin xs {
-  @media (min-width: map-get($grid-breakpoints, 'xs')) {
-    @content;
-  }
+    @media (min-width: map-get($grid-breakpoints, "xs")) {
+        @content;
+    }
 }
 
 @mixin sm {
-  @media (min-width: map-get($grid-breakpoints, 'sm')) {
-    @content;
-  }
+    @media (min-width: map-get($grid-breakpoints, "sm")) {
+        @content;
+    }
 }
 
 @mixin md {
-  @media (min-width: map-get($grid-breakpoints, 'md')) {
-    @content;
-  }
+    @media (min-width: map-get($grid-breakpoints, "md")) {
+        @content;
+    }
 }
 
 @mixin lg {
-  @media (min-width: map-get($grid-breakpoints, 'lg')) {
-    @content;
-  }
+    @media (min-width: map-get($grid-breakpoints, "lg")) {
+        @content;
+    }
 }
 
 @mixin xl {
-  @media (min-width: map-get($grid-breakpoints, 'xl')) {
-    @content;
-  }
+    @media (min-width: map-get($grid-breakpoints, "xl")) {
+        @content;
+    }
 }
 
 @mixin xxl {
-  @media (min-width: map-get($grid-breakpoints, 'xxl')) {
-    @content;
-  }
+    @media (min-width: map-get($grid-breakpoints, "xxl")) {
+        @content;
+    }
 }
 
 @mixin xxxl {
-  @media (min-width: map-get($grid-breakpoints, 'xxxl')) {
-    @content;
-  }
+    @media (min-width: map-get($grid-breakpoints, "xxxl")) {
+        @content;
+    }
 }
 
 @mixin custom-mq($prop, $viewport) {
-  @media ($prop: $viewport) {
-    @content;
-  }
+    @media ($prop: $viewport) {
+        @content;
+    }
 }
 
 @mixin mq-range($min, $max) {
-  @media (min-width: '#{$min}px') and (max-width: '#{$max}px') {
-    @content;
-  }
+    @media (min-width: '#{$min}px') and (max-width: '#{$max}px') {
+        @content;
+    }
 }
 
 @mixin lineclamp($lines: 2, $lineHeight: false) {
-  display: -webkit-box;
-  display: -moz-box;
-  -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
-  -webkit-line-clamp: $lines;
-  line-clamp: $lines;
-  overflow: hidden;
-  text-overflow: ellipsis;
+    display: -webkit-box;
+    display: -moz-box;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-line-clamp: $lines;
+    line-clamp: $lines;
+    overflow: hidden;
+    text-overflow: ellipsis;
 
-  @if $lineHeight {
-    max-height: $lineHeight * $lines * 1px;
-  }
+    @if $lineHeight {
+        max-height: $lineHeight * $lines * 1px;
+    }
 }
 
 @mixin line-height($fontSize, $lineHeightPx) {
-  line-height: $lineHeightPx / $fontSize;
+    line-height: $lineHeightPx / $fontSize;
 }

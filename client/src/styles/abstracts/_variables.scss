@@ -1,39 +1,76 @@
 /* colors */
-$c-primary: #2b6bec;
+$c-primary: #1975d2;
 $c-secondary: #ff5a5f;
-$c-secondary-dark: #3c64f4;
 $c-dark: #000000;
 $c-light: #ffffff;
-$c-gray: #9b9b9b;
-$c-gray-secondary: #dddddd;
-$c-gray-tertiary: #f0eef2;
-$c-success: #48b89c;
-$c-error: #f67971;
+$c-gray-light: #e9ecef;
+$c-gray: #ced4d9;
+$c-gray-dark: #afb2b6;
+$c-success: #198753;
+$c-danger: #dc3444;
+$c-warning: #ffc007;
+
+:root {
+    --c-primary-h: 210;
+    --c-primary-s: 79%;
+    --c-primary-l: 46%;
+    --c-primary: hsl(var(--c-primary-h), var(--c-primary-s), var(--c-primary-l));
+    --c-secondary: #ff5a5f;
+    --c-dark: #000000;
+    --c-light: #ffffff;
+    --c-gray-light: #e9ecef;
+    --c-gray: #ced4d9;
+    --c-gray-dark: #afb2b6;
+    --c-success: #198753;
+    --c-danger: #dc3444;
+    --c-warning: #ffc007;
+    --c-disabled-color: rgba(0, 0, 0, 0.12);
+
+    /* SHADOW */
+    --shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px,
+        rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+    --shadow-lg: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px,
+        rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
+    /*  */
+
+    /* text size */
+    --fs-xs: 1.2rem;
+    --fs-sm: 1.4rem;
+    --fs-base: 1.6rem;
+    --fs-lg: 1.8rem;
+    --fs-xl: 2rem;
+    --fs-2xl: 2.4rem;
+    --fs-3xl: 3rem;
+    /*  */
+}
+
+$shade-percent: 13%;
+$tint-percent: 10%;
+$btn-hover-shade-percent: $shade-percent;
 
 /* radius */
-$radius: (
-    "xs": 0.3rem,
-    "sm": 0.5rem,
-    "md": 0.8rem,
-    "lg": 1.2rem,
-);
-
-/* text size */
-$text-size: (
-    "xs": 1.2rem,
-    "sm": 1.4rem,
-    "md": 1.8rem,
-    "lg": 2.5rem,
-    "xl": 3rem,
-);
+$radius-xs: 0.3rem;
+$radius-sm: 0.5rem;
+$radius-md: 0.8rem;
+$radius-lg: 1.2rem;
+$radius-full: 9999px;
 
 /* font-weight */
-$font-weight: (
-    "light": 300,
-    "regular": 400,
-    "medium": 500,
-    "bold": 600,
-);
+$fw-light: 300;
+$fw-normal: 400;
+$fw-medium: 500;
+$fw-bold: 600;
+
+/* line height */
+$lh-tight: 1.25;
+$lh-normal: 1.5;
+$lh-relaxed: 1.625;
+$lh-loose: 2;
+
+/* shadow */
+$shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px, rgba(0, 0, 0, 0.12) 0px 1px 5px 0px;
+$shadow-lg: rgba(0, 0, 0, 0.2) 0px 2px 4px -1px, rgba(0, 0, 0, 0.14) 0px 4px 5px 0px,
+    rgba(0, 0, 0, 0.12) 0px 1px 10px 0px;
 
 /* breakpoints */
 $grid-breakpoints: (
@@ -44,7 +81,7 @@ $grid-breakpoints: (
     "xl": 1280px,
     "xxl": 1536px,
 );
-
+// CSS OVER SCROLL KONUSUNA BAK
 $container-max-widths: (
     "sm": 576px,
     "md": 768px,

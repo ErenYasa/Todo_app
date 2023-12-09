@@ -2,7 +2,7 @@
     opacity: 0.7;
     @include containerClass("sm");
     margin-bottom: 1rem;
-    font-size: map-get($text-size, "lg");
+    // font-size: map-get($text-size, "lg");
     text-transform: uppercase;
     color: $c-light;
 }

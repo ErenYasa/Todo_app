@@ -1,7 +1,7 @@
 .todos-container {
     position: relative;
     margin-top: 1.5rem;
-    border-radius: map-get($radius, "sm");
+    // border-radius: map-get($radius, "sm");
     background-color: $c-light;
 
     .loader__dropmask__dots {

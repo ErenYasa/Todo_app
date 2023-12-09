@@ -30,7 +30,7 @@
             justify-content: center;
             padding: 0.8rem;
             border-radius: 1.2rem;
-            border: 0.1rem solid $c-gray-tertiary;
+            // border: 0.1rem solid $c-gray-tertiary;
             background-color: $c-light;
         }
     }
@@ -40,26 +40,26 @@
     width: 95%;
     margin-bottom: 0;
     height: 75%;
-    border-top-left-radius: map-get($radius, "md");
-    border-top-right-radius: map-get($radius, "md");
+    // border-top-left-radius: map-get($radius, "md");
+    // border-top-right-radius: map-get($radius, "md");
 
     @include sm {
         width: 80%;
         max-width: 60rem;
         height: 40rem;
         margin-bottom: auto;
-        border-bottom-left-radius: map-get($radius, "md");
-        border-bottom-right-radius: map-get($radius, "md");
+        // border-bottom-left-radius: map-get($radius, "md");
+        // border-bottom-right-radius: map-get($radius, "md");
     }
 }
 
 .modal--confirm {
     width: 30rem;
-    border-radius: map-get($radius, "md");
+    // border-radius: map-get($radius, "md");
 
     &__title {
         margin-bottom: 2rem;
-        font-size: map-get($text-size, "md");
+        // font-size: map-get($text-size, "md");
     }
 
     &__btn__group {
@@ -84,8 +84,8 @@
         &__desc {
             width: 100%;
             padding: 1.3rem;
-            border-radius: map-get($radius, "md");
-            background-color: $c-gray-tertiary;
+            // border-radius: map-get($radius, "md");
+            // background-color: $c-gray-tertiary;
         }
 
         &__title {
@@ -113,7 +113,7 @@
             flex-direction: column;
 
             .edit-todo__date {
-                font-size: map-get($text-size, "xs");
+                // font-size: map-get($text-size, "xs");
                 color: $c-gray;
             }
         }

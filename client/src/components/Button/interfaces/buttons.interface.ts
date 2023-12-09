@@ -1,6 +1,10 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 
-export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
+  variant?: 'default' | 'outline' | 'text';
+  kind?: 'primary' | 'secondary' | 'danger' | 'success';
+  size?: 'small' | 'medium' | 'large';
+  fullWidth?: boolean;
   loading?: boolean;
 }
