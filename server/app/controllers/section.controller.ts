@@ -166,9 +166,7 @@ export async function _delete(req: Request, res: Response) {
     }
 
     /* Delete all owned todos */
-    await TodoModel.deleteMany({
-      sectionId: id,
-    } as ITodo);
+    await TodoModel.deleteMany({ sectionId: id });
     /*  */
 
     res.send(

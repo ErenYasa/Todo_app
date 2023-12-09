@@ -1,28 +1,15 @@
-import { IButtonProps } from './interfaces/buttons.interface';
+import { ButtonProps } from './interfaces/buttons.interface';
 import classNames from 'classnames';
 
-export function Default({ children, loading, ...rest }: IButtonProps) {
-  const classes = classNames('btn', rest.className, { loading });
+export function Button({ children, variant, kind, size, fullWidth, loading, ...rest }: ButtonProps) {
+  const variantHandler = `btn--${variant || 'default'}`;
+  const kindHandler = `btn--${kind || 'primary'}`;
+  const sizeHandler = size ? `btn--${size}` : '';
+  const fullWidthHandler = fullWidth ? 'btn--full-width' : '';
 
-  return (
-    <button {...rest} className={classes}>
-      {loading ? <span>loading</span> : children}
-    </button>
-  );
-}
-
-export function DefaultOutline({ children, loading, ...rest }: IButtonProps) {
-  const classes = classNames('btn btn--outline', rest.className, { loading });
-
-  return (
-    <button {...rest} className={classes}>
-      {loading ? <span>loading</span> : children}
-    </button>
-  );
-}
-
-export function Soft({ children, loading, ...rest }: IButtonProps) {
-  const classes = classNames('btn-soft', rest.className, { loading });
+  const classes = classNames('btn', variantHandler, kindHandler, sizeHandler, fullWidthHandler, {
+    loading,
+  });
 
   return (
     <button {...rest} className={classes}>

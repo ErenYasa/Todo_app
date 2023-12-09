@@ -29,11 +29,11 @@
             }
 
             &:not(:first-child) {
-                border-top: 0.1rem solid $c-gray-secondary;
+                // border-top: 0.1rem solid $c-gray-secondary;
             }
 
             &:last-child {
-                border-bottom: 0.1rem solid $c-gray-secondary;
+                // border-bottom: 0.1rem solid $c-gray-secondary;
             }
 
             &__checkbox {
@@ -44,7 +44,7 @@
                 padding-inline: 2rem;
                 font-size: 1.5rem;
                 font-weight: 300;
-                border-right: 0.1rem solid $c-gray-secondary;
+                // border-right: 0.1rem solid $c-gray-secondary;
                 cursor: pointer;
 
                 &::before {
@@ -118,13 +118,13 @@
                     height: 100%;
 
                     &__title {
-                        font-size: map-get($text-size, "sm");
+                        // font-size: map-get($text-size, "sm");
                         @include lineclamp(1);
                     }
 
                     &__time {
-                        font-size: map-get($text-size, "xs");
-                        color: $c-gray;
+                        // font-size: map-get($text-size, "xs");
+                        // color: $c-gray;
                     }
                 }
 
