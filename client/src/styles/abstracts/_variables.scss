@@ -15,7 +15,10 @@ $c-warning: #ffc007;
     --c-primary-s: 79%;
     --c-primary-l: 46%;
     --c-primary: hsl(var(--c-primary-h), var(--c-primary-s), var(--c-primary-l));
-    --c-secondary: #ff5a5f;
+    --c-secondary-h: 358;
+    --c-secondary-s: 100%;
+    --c-secondary-l: 68%;
+    --c-secondary: hsl(var(--c-secondary-h), var(--c-secondary-s), var(--c-secondary-l));
     --c-dark: #000000;
     --c-light: #ffffff;
     --c-gray-light: #e9ecef;
@@ -25,6 +28,7 @@ $c-warning: #ffc007;
     --c-danger: #dc3444;
     --c-warning: #ffc007;
     --c-disabled-color: rgba(0, 0, 0, 0.12);
+    --c-disabled-input-color: rgba(0, 0, 0, 0.06);
 
     /* SHADOW */
     --shadow: rgba(0, 0, 0, 0.2) 0px 3px 1px -2px, rgba(0, 0, 0, 0.14) 0px 2px 2px 0px,
@@ -42,6 +46,28 @@ $c-warning: #ffc007;
     --fs-2xl: 2.4rem;
     --fs-3xl: 3rem;
     /*  */
+
+    /* font-weight */
+    --fw-light: 300;
+    --fw-normal: 400;
+    --fw-medium: 500;
+    --fw-bold: 600;
+    /*  */
+
+    /* radius */
+    --radius-xs: 0.3rem;
+    --radius-sm: 0.5rem;
+    --radius-md: 0.8rem;
+    --radius-lg: 1.2rem;
+    --radius-full: 9999px;
+    --rounded-btn: var(--radius-md);
+    /*  */
+
+    /* line height */
+    --lh-tight: 1.25;
+    --lh-normal: 1.5;
+    --lh-relaxed: 1.625;
+    --lh-loose: 2;
 }
 
 $shade-percent: 13%;

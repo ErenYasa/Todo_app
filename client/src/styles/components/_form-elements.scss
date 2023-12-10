@@ -1,0 +1,100 @@
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 2.8rem;
+}
+
+.form-control {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+
+    &--error {
+        .form-control__input {
+            border-color: var(--c-danger);
+
+            &.input--no-border {
+                border-color: var(--c-danger);
+            }
+        }
+
+        .form-control__error {
+            font-size: var(--fs-xs);
+            color: var(--c-danger);
+        }
+    }
+
+    &__label {
+        user-select: none;
+        font-size: var(--fs-sm);
+        line-height: var(--lh-tight);
+        color: var(--fallback-bc, oklch(var(--bc) / var(--tw-text-opacity)));
+    }
+
+    &__input {
+        appearance: none;
+        flex-shrink: 1;
+        width: 100%;
+        height: 4.2rem;
+        padding: 1.2rem;
+        font-size: var(--fs-sm);
+        border: 0.1rem solid;
+        border-color: var(--input-color, var(--c-gray));
+        border-radius: var(--rounded-btn);
+
+        &.input--primary {
+            --input-color: var(--c-primary);
+        }
+
+        &.input--secondary {
+            --input-color: var(--c-secondary);
+        }
+
+        &.input--danger {
+            --input-color: var(--c-danger);
+        }
+
+        &.input--success {
+            --input-color: var(--c-success);
+        }
+
+        &.input--no-border {
+            border-color: transparent;
+        }
+
+        &.input--small {
+            height: 3.2rem;
+            padding: 1rem;
+        }
+
+        &.input--large {
+            height: 5.5rem;
+            padding: 1.5rem;
+            font-size: var(--fs-lg);
+        }
+
+        .form-control:not(.form-control--error) &:hover {
+            border-color: color-mix(in srgb, var(--input-color, var(--c-gray)) 60%, white 4%);
+        }
+
+        .form-control:not(.form-control--error) &:focus,
+        .form-control:not(.form-control--error) &:focus-within {
+            border-color: color-mix(in srgb, var(--input-color, var(--c-gray)) 60%, white 4%);
+            outline: 0.2rem solid;
+            outline-offset: 0.2rem;
+            outline-color: color-mix(in srgb, var(--input-color, var(--c-gray)) 60%, white 4%);
+        }
+
+        &.input--disabled,
+        &[disabled],
+        &:disabled {
+            cursor: not-allowed;
+            border: var(--c-disabled-input-color);
+            background-color: var(--c-disabled-input-color);
+            color: rgba(0, 0, 0, 0.25);
+        }
+    }
+}
