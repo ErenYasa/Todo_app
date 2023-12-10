@@ -244,14 +244,14 @@
     gap: 0.5rem;
     padding: 0.6rem 1.6rem;
     border: 0.1rem solid transparent;
-    border-radius: $radius-sm;
+    border-radius: var(--rounded-btn);
     text-transform: uppercase;
     letter-spacing: 0.02857em;
     vertical-align: middle;
     user-select: none;
     color: var(--btn-text-color, var(--c-light));
     background-color: var(--btn-color);
-    box-shadow: $shadow;
+    box-shadow: var(--shadow);
     transition: 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
         color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
 
@@ -369,7 +369,7 @@
     }
 
     &.btn--disabled,
-    &.btn[disabled],
+    &[disabled],
     &:disabled {
         pointer-events: none;
         --btn-color: var(--c-disabled-color);
