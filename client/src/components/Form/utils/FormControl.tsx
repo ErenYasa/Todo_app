@@ -9,7 +9,7 @@ export const FormControl: React.FC<FormControlProps> = ({ children, className, d
   return (
     <div className={classes} key={name}>
       {children}
-      {/* {errors && <FormControlError />} */}
+      {errors && <FormControlError errors={errors} />}
     </div>
   );
 };

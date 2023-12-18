@@ -28,6 +28,8 @@ export default ({ mode }) => {
         '@layout': path.resolve(__dirname, './src/layout/'),
         '@views': path.resolve(__dirname, './src/views/'),
         '@routes': path.resolve(__dirname, './src/routes/'),
+        '@icons': path.resolve(__dirname, './src/icons/'),
+        '@schemas': path.resolve(__dirname, './src/schemas/'),
       },
     },
   });

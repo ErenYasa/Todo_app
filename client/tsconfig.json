@@ -15,7 +15,9 @@
       "@services/*": ["./src/services/*"],
       "@layout/*": ["./src/layout/*"],
       "@views/*": ["./src/views/*"],
-      "@routes/*": ["./src/routes/*"]
+      "@routes/*": ["./src/routes/*"],
+      "@icons/*": ["./src/icons/*"],
+      "@schemas/*": ["./src/schemas/*"],
     },
     "skipLibCheck": true,
     "declaration": true,

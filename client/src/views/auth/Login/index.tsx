@@ -1,50 +1,55 @@
-import { Link } from 'react-router-dom';
-
-import { useState } from 'react';
+import { Fragment } from 'react';
+import { useFormik } from 'formik';
+import { loginInitialValues, loginSchema } from '@/schemas/auth';
 import { useLoginMutation } from '@/services/auth';
+import { PageSwitcher } from '../components/PageSwitcher';
+import { TextInput } from '@/components/Form/Elements/TextInput';
+import { Button } from '@/components/Button';
+import { LinkButton } from '@/components/LinkButton';
 
 export default function LoginPage() {
-  /* States */
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-  });
-  /*  */
-
   /* Queries */
   const [login] = useLoginMutation();
   /*  */
 
   /* Effects & Events */
-  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, email: event.target.value });
-  };
-
-  const handlePasswordChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setForm({ ...form, password: event.target.value });
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    login({ email: form.email, password: form.password });
-  };
+  const { handleSubmit, handleChange, errors, isSubmitting } = useFormik({
+    initialValues: loginInitialValues,
+    validationSchema: loginSchema,
+    validateOnChange: false,
+    validateOnBlur: false,
+    onSubmit: ({ email, password }) => {
+      login({ email, password });
+    },
+  });
   /*  */
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input type="email" id="email" value={form.email} onChange={handleEmailChange} />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" value={form.password} onChange={handlePasswordChange} />
-        </div>
-        <button type="submit">Login</button>
+    <Fragment>
+      <PageSwitcher />
+      <form className="auth-form" onSubmit={handleSubmit}>
+        <TextInput
+          label="Email*"
+          name="email"
+          placeholder="example@ticklist.com"
+          errors={errors?.email}
+          onChange={handleChange}
+        />
+        <TextInput
+          type="password"
+          label="Password*"
+          name="password"
+          placeholder="******"
+          errors={errors?.password}
+          onChange={handleChange}
+        />
+        <LinkButton to="/forgot-password" className="auth-form__forgot-pass-btn">
+          Forgot password?
+        </LinkButton>
+        <Button type="submit" kind="primary" size="large" fullWidth disabled={isSubmitting}>
+          {!isSubmitting ? 'Log in' : '...Loading'}
+        </Button>
       </form>
-      <Link to={'/register'}>go register</Link>
-    </div>
+    </Fragment>
   );
 }
