@@ -19,8 +19,10 @@ $c-warning: #ffc007;
     --c-secondary-s: 100%;
     --c-secondary-l: 68%;
     --c-secondary: hsl(var(--c-secondary-h), var(--c-secondary-s), var(--c-secondary-l));
-    --c-dark: #000000;
+    --c-dark: hsl(0, 0%, 20%);
     --c-light: #ffffff;
+    --c-light-secondary: hsl(0, 0%, 96%);
+    --c-main-bg: var(--c-light-secondary);
     --c-gray-light: #e9ecef;
     --c-gray: #ced4d9;
     --c-gray-dark: #afb2b6;
@@ -60,7 +62,7 @@ $c-warning: #ffc007;
     --radius-md: 0.8rem;
     --radius-lg: 1.2rem;
     --radius-full: 9999px;
-    --rounded-btn: var(--radius-md);
+    --rounded-btn: var(--radius-sm);
     /*  */
 
     /* line height */

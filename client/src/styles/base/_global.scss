@@ -5,8 +5,7 @@
     font-weight: 400;
     font-size: 62.5%;
     scroll-behavior: smooth;
-    color: $c_dark;
-    caret-color: $c_primary;
+    color: var(--c-dark);
     font-synthesis: none;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;

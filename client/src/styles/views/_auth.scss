@@ -1,0 +1,96 @@
+.auth {
+    height: 100%;
+
+    @include sm {
+        background-color: var(--c-main-bg);
+    }
+
+    &__container {
+        @include containerClass("sm");
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        height: 100%;
+
+        .auth__container__content {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 3rem;
+            background: var(--c-light);
+
+            @include sm {
+                margin-top: 12rem;
+                border: 0.1rem solid var(--c-gray-light);
+            }
+
+            @include md {
+                margin-top: 6rem;
+            }
+
+            .auth__page-switches {
+                display: flex;
+                margin-bottom: 2rem;
+                padding: 0.4rem;
+                border-radius: var(--radius-sm);
+                background-color: var(--c-gray-light);
+
+                &__switcher {
+                    width: 50%;
+                    font-size: var(--fs-sm);
+                    color: var(--c-primary);
+                    border-radius: var(--radius-xs);
+                    background-color: transparent;
+                    box-shadow: none;
+
+                    &.switcher--active {
+                        pointer-events: none;
+                        color: var(--c-light);
+                        background-color: var(--c-primary);
+                    }
+
+                    &:first-child {
+                        border-top-right-radius: 0;
+                        border-bottom-right-radius: 0;
+                    }
+
+                    &:last-child {
+                        border-top-left-radius: 0;
+                        border-bottom-left-radius: 0;
+                    }
+                }
+            }
+
+            &__title {
+                margin-bottom: 3.5rem;
+                font-size: var(--fs-2xl);
+                font-weight: var(--fw-bold);
+            }
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.3rem;
+
+            @include sm {
+                gap: 2rem;
+            }
+
+            &__forgot-pass-btn {
+                align-self: flex-end;
+                font-size: var(--fs-sm);
+            }
+        }
+
+        .login-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+
+            &__sign-up-btn {
+                font-weight: var(--fw-medium);
+            }
+        }
+    }
+}

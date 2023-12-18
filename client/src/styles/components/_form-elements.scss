@@ -1,7 +1,7 @@
 .form-row {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 2.8rem;
+    column-gap: 2rem;
 }
 
 .form-control {
@@ -22,8 +22,16 @@
         }
 
         .form-control__error {
+            display: flex;
+            gap: 0.5rem;
             font-size: var(--fs-xs);
+            font-weight: var(--fw-medium);
             color: var(--c-danger);
+
+            &__icon {
+                margin-top: 0.2rem;
+                color: var(--c-danger);
+            }
         }
     }
 
@@ -31,7 +39,6 @@
         user-select: none;
         font-size: var(--fs-sm);
         line-height: var(--lh-tight);
-        color: var(--fallback-bc, oklch(var(--bc) / var(--tw-text-opacity)));
     }
 
     &__input {
@@ -63,6 +70,10 @@
 
         &.input--no-border {
             border-color: transparent;
+
+            &::placeholder {
+                color: var(--c-gray-dark);
+            }
         }
 
         &.input--small {

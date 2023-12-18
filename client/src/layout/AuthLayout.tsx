@@ -1,5 +1,6 @@
+import { Header } from '@/components/Header';
 import classNames from 'classnames';
-import { ReactNode } from 'react';
+import { Fragment, ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
@@ -7,8 +8,17 @@ type Props = {
 };
 
 export function AuthLayout({ children, customClass }: Props) {
-  const childrenClasses = classNames({
+  const childrenClasses = classNames('auth__container', {
     customClass,
   });
-  return <div className={childrenClasses}>{children}</div>;
+  return (
+    <Fragment>
+      <Header />
+      <div className="auth">
+        <div className={childrenClasses}>
+          <div className="auth__container__content">{children}</div>
+        </div>
+      </div>
+    </Fragment>
+  );
 }
