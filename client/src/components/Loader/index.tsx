@@ -1,4 +1,5 @@
-import { DotsLoading } from '../Icons';
+import { DotsLoading } from "@/icons";
+
 
 type Props = {
   width?: string;

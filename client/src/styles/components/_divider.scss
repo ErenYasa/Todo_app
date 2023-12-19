@@ -1,0 +1,35 @@
+.divider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-self: stretch;
+    height: 1rem;
+    margin-block: 1.6rem;
+    white-space: nowrap;
+
+    &::before,
+    &::after {
+        content: "";
+        height: 0.125rem;
+        width: 100%;
+        flex-grow: 1;
+        background-color: var(--c-gray);
+    }
+
+    &:not(:empty) {
+        gap: 1.6rem;
+    }
+
+    &.divider--horizontal {
+        flex-direction: column;
+        width: 1.6rem;
+        height: auto;
+        margin: 0 1.6rem;
+
+        &::before,
+        &::after {
+            width: 0.2rem;
+            height: 100%;
+        }
+    }
+}

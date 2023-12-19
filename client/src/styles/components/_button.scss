@@ -1,240 +1,3 @@
-/* .btn {
-    min-width: 7.5rem;
-    height: max-content;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    padding: 0.6rem 1.6rem;
-    border: 0.1rem solid;
-    border-radius: $radius-sm;
-    text-transform: uppercase;
-    letter-spacing: 0.02857em;
-    vertical-align: middle;
-    user-select: none;
-    background-color: $c-primary;
-    color: $c-light;
-
-    &.btn--default {
-        @mixin default {
-            box-shadow: $shadow;
-            transition: 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-                border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-        }
-
-        @mixin hoverHandler($color, $percent) {
-            &:hover {
-                border-color: shade($color, $percent);
-                background-color: shade($color, $percent);
-                box-shadow: $shadow-lg;
-            }
-        }
-
-        @mixin disabledHandler {
-            &:disabled {
-                pointer-events: none;
-                color: rgba(0, 0, 0, 0.26);
-                border-color: transparent;
-                background-color: rgba(0, 0, 0, 0.12);
-                box-shadow: none;
-            }
-        }
-
-        &-primary {
-            @include default;
-            $color: $c-primary;
-
-            border-color: $color;
-            background-color: $color;
-
-            @include hoverHandler($color, $btn-hover-shade-percent);
-            @include disabledHandler;
-        }
-
-        &-secondary {
-            @include default;
-            $color: $c-secondary;
-
-            border-color: $color;
-            background-color: $color;
-
-            @include hoverHandler($color, $btn-hover-shade-percent);
-            @include disabledHandler;
-        }
-
-        &-danger {
-            @include default;
-            $color: $c-danger;
-
-            border-color: $color;
-            background-color: $color;
-
-            @include hoverHandler($color, $btn-hover-shade-percent);
-            @include disabledHandler;
-        }
-
-        &-success {
-            @include default;
-            $color: $c-success;
-
-            background-color: $color;
-            border-color: $color;
-
-            @include hoverHandler($color, $btn-hover-shade-percent);
-            @include disabledHandler;
-        }
-    }
-
-    &.btn--outline {
-        $border-opacity: 40%;
-        $border-hover-opacity: 0%;
-        $background-hover-opacity: 93%;
-
-        @mixin default {
-            background-color: transparent;
-            transition: 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, border-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-                color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-        }
-
-        @mixin hoverHandler($color) {
-            &:hover {
-                border-color: tint($color, $border-hover-opacity);
-                background-color: tint($color, $background-hover-opacity);
-            }
-        }
-
-        @mixin disabledHandler {
-            &:disabled {
-                pointer-events: none;
-                color: rgba(0, 0, 0, 0.26);
-                border-color: rgba(0, 0, 0, 0.12);
-            }
-        }
-
-        &-primary {
-            @include default;
-            $color: $c-primary;
-
-            color: $color;
-            border-color: tint($color, $border-opacity);
-
-            @include hoverHandler($color);
-            @include disabledHandler;
-        }
-
-        &-secondary {
-            @include default;
-            $color: $c-secondary;
-
-            color: $color;
-            border-color: tint($color, $border-opacity);
-
-            @include hoverHandler($color);
-            @include disabledHandler;
-        }
-
-        &-danger {
-            @include default;
-            $color: $c-danger;
-
-            color: $color;
-            border-color: tint($color, $border-opacity);
-
-            @include hoverHandler($color);
-            @include disabledHandler;
-        }
-
-        &-success {
-            @include default;
-            $color: $c-success;
-
-            color: $color;
-            border-color: tint($color, $border-opacity);
-
-            @include hoverHandler($color);
-            @include disabledHandler;
-        }
-    }
-
-    &.btn--text {
-        $background-hover-opacity: 94%;
-
-        @mixin default {
-            border-color: transparent;
-            background: transparent;
-            transition: 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
-                color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-        }
-
-        @mixin hoverHandler($color) {
-            &:hover {
-                background-color: tint($color, $background-hover-opacity);
-            }
-        }
-
-        @mixin disabledHandler {
-            &:disabled {
-                pointer-events: none;
-                color: rgba(0, 0, 0, 0.26);
-            }
-        }
-
-        &-primary {
-            @include default;
-            $color: $c-primary;
-
-            color: $color;
-
-            @include hoverHandler($color);
-            @include disabledHandler;
-        }
-
-        &-secondary {
-            @include default;
-            $color: $c-secondary;
-
-            color: $color;
-
-            @include hoverHandler($color);
-            @include disabledHandler;
-        }
-
-        &-danger {
-            @include default;
-            $color: $c-danger;
-
-            color: $color;
-
-            @include hoverHandler($color);
-            @include disabledHandler;
-        }
-
-        &-success {
-            @include default;
-            $color: $c-success;
-
-            color: $color;
-
-            @include hoverHandler($color);
-            @include disabledHandler;
-        }
-    }
-
-    &.btn--small {
-        padding: 0.4rem 1rem;
-        font-size: $fs-sm;
-    }
-
-    &.btn--large {
-        padding: 0.85rem 2.2rem;
-        font-size: $fs-lg;
-    }
-
-    &.btn--block {
-        width: 100%;
-    }
-} */
-
 .btn {
     min-width: 7.5rem;
     height: max-content;
@@ -245,7 +8,6 @@
     padding: 0.6rem 1.6rem;
     border: 0.1rem solid transparent;
     border-radius: var(--rounded-btn);
-    text-transform: uppercase;
     letter-spacing: 0.02857em;
     vertical-align: middle;
     user-select: none;
@@ -270,6 +32,10 @@
 
         &.btn--success {
             --btn-color: var(--c-success);
+        }
+
+        &.btn--dark {
+            --btn-color: var(--c-dark);
         }
 
         &:hover {
@@ -308,6 +74,10 @@
             --btn-color: var(--c-success);
         }
 
+        &.btn--dark {
+            --btn-color: var(--c-dark);
+        }
+
         &:hover {
             --btn-hover-percent: 12%;
         }
@@ -343,6 +113,10 @@
             --btn-text-color: var(--c-success);
         }
 
+        &.btn--dark {
+            --btn-text-color: var(--c-dark);
+        }
+
         &:hover {
             --btn-hover-percent: 12%;
         }
@@ -372,8 +146,8 @@
     &[disabled],
     &:disabled {
         pointer-events: none;
-        --btn-color: var(--c-disabled-color);
-        --btn-text-color: var(--c-disabled-color);
+        --btn-color: var(--c-disabled-color) !important;
+        --btn-text-color: var(--c-disabled-color) !important;
         box-shadow: none;
     }
 }

@@ -1,7 +1,8 @@
+import { useReadLocalStorage } from 'usehooks-ts';
 import { useLazyLogoutQuery } from '@/services/auth';
 import { IUser } from '@/types/global';
 import { Link } from 'react-router-dom';
-import { useReadLocalStorage } from 'usehooks-ts';
+import AppLogo from '../AppLogo';
 
 export function Header() {
   /* STATES & VARIABLES */
@@ -24,15 +25,18 @@ export function Header() {
 
   return (
     <header className="header">
-      <Link to="/">My Todos</Link> - {userInfo.firstName} {userInfo.lastName}
-      <div>
-        {/* {userInfo.workspaces.map((space) => (
+      <div className="header__container">
+        <AppLogo textVisible="desktop" />
+        {/* <Link to="/">My Todos</Link> - {userInfo.firstName} {userInfo.lastName} */}
+        <div>
+          {/* {userInfo.workspaces.map((space) => (
           <Link key={space.id} to={`work-space/${space.id}`}>
             {space.name}
           </Link>
         ))} */}
+        </div>
+        <button onClick={handleLogout}>Logout</button>
       </div>
-      <button onClick={handleLogout}>Logout</button>
     </header>
   );
 }

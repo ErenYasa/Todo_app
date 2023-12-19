@@ -1,7 +1,7 @@
 import { ReactElement, cloneElement, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import classNames from 'classnames';
-import * as Icon from '@components/Icons';
+import * as Icon from '@/icons';
 import { IBaseModalProps } from './interfaces/modals.interface';
 import { useAppDispatch, useAppSelector } from '@store/hooks';
 import { closeModal } from '@store/slices/modal.slice';

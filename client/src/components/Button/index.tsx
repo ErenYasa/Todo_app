@@ -1,17 +1,13 @@
 import { ButtonProps } from './interfaces/buttons.interface';
 import classNames from 'classnames';
 
-export function Button({ children, variant, kind, size, fullWidth, loading, ...rest }: ButtonProps) {
-  // const variantHandler = `btn--${variant || 'default'}`;
-  // const kindHandler = `btn--${kind || 'primary'}`;
-  // const sizeHandler = size ? `btn--${size}` : '';
-  // const fullWidthHandler = fullWidth ? 'btn--full-width' : '';
+export function Button({ children, className, variant, kind, size, fullWidth, loading, ...rest }: ButtonProps) {
+  const variantHandler = `btn--${variant || 'default'}`;
+  const kindHandler = `btn--${kind || 'primary'}`;
+  const sizeHandler = size ? `btn--${size}` : '';
+  const fullWidthHandler = fullWidth ? 'btn--full-width' : '';
 
-  const classes = classNames('btn', {
-    [`btn--${variant || 'default'}`]: variant,
-    [`btn--${kind || 'primary'}`]: kind,
-    [`btn--${size}`]: size,
-    'btn--full-width': fullWidth,
+  const classes = classNames('btn', className, variantHandler, kindHandler, sizeHandler, fullWidthHandler, {
     loading,
   });
 

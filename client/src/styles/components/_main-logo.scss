@@ -1,0 +1,72 @@
+.logo-container {
+    --main-color: var(--c-primary);
+    --transition-duration: 0.2s;
+
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: -1;
+        transform: translate(-50%, -50%);
+        width: calc(100% + 1rem);
+        height: calc(100% + 1rem);
+        border-radius: var(--radius-xs);
+        background-color: transparent;
+        transition: background-color var(--transition-duration);
+    }
+
+    .main-logo {
+        color: var(--main-color);
+        width: 3.4rem;
+        height: 3.4rem;
+
+        @include sm {
+            width: 4rem;
+            height: 4rem;
+        }
+    }
+
+    &__text {
+        font-size: var(--fs-3xl);
+        font-weight: 600;
+        line-height: var(--lh-tight);
+        color: var(--main-color);
+
+        &--mobile-visible {
+            font-size: var(--fs-2xl);
+            @include sm {
+                display: none;
+            }
+        }
+
+        &--desktop-visible {
+            display: none;
+
+            @include sm {
+                display: block;
+            }
+        }
+    }
+
+    .main-logo,
+    .logo-container__text {
+        transition: color var(--transition-duration);
+    }
+
+    &:hover {
+        &::before {
+            background-color: color-mix(in srgb, white 90%, var(--main-color));
+        }
+
+        .main-logo,
+        .logo-container__text {
+            color: color-mix(in srgb, black 30%, var(--main-color));
+        }
+    }
+}

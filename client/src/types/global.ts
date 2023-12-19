@@ -64,6 +64,25 @@ export enum Priority {
   URGENT = 3,
 }
 
+export enum Variant {
+  DEFAULT = 'default',
+  OUTLINE = 'outline',
+  TEXT = 'text',
+}
+
+export enum Kind {
+  PRIMARY = 'primary',
+  SECONDARY = 'secondary',
+  DANGER = 'danger',
+  SUCCESS = 'success',
+}
+
+export enum Size {
+  SM = 'small',
+  MD = 'medium',
+  LG = 'large',
+}
+
 /*  */
 
 /**
