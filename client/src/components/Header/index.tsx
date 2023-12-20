@@ -1,10 +1,14 @@
 import { useReadLocalStorage } from 'usehooks-ts';
-import { useLazyLogoutQuery } from '@/services/auth';
+import classNames from 'classnames';
 import { IUser } from '@/types/global';
-import { Link } from 'react-router-dom';
 import AppLogo from '../AppLogo';
+import { HeaderProps } from './defs';
+import { Fragment } from 'react';
+import { SearchBar } from '../SearchBar';
+import { AddIcon } from '@/icons';
+import { UserDropdown } from '../UserDropdown';
 
-export function Header() {
+export function Header({ fullWidth }: HeaderProps) {
   /* STATES & VARIABLES */
   /*  */
 
@@ -12,30 +16,26 @@ export function Header() {
   const userInfo = useReadLocalStorage(`${process.env.APP_NAME}_user`) as IUser;
   /*  */
 
-  /* Queries */
-  const [logout] = useLazyLogoutQuery();
-  /*  */
-
-  /* Effects & Events */
-  const handleLogout = () => {
-    logout('');
-  };
-
-  /*  */
+  const classes = classNames('header', {
+    ['header--fullWidth']: fullWidth,
+  });
 
   return (
-    <header className="header">
+    <header className={classes}>
       <div className="header__container">
         <AppLogo textVisible="desktop" />
-        {/* <Link to="/">My Todos</Link> - {userInfo.firstName} {userInfo.lastName} */}
-        <div>
-          {/* {userInfo.workspaces.map((space) => (
-          <Link key={space.id} to={`work-space/${space.id}`}>
-            {space.name}
-          </Link>
-        ))} */}
-        </div>
-        <button onClick={handleLogout}>Logout</button>
+        {userInfo && (
+          <Fragment>
+            <div className='header__container__middle'>
+              <SearchBar />
+              <button>
+                <AddIcon />
+              </button>
+            </div>
+            <UserDropdown />
+            {/* <button onClick={handleLogout}>Logout</button> */}
+          </Fragment>
+        )}
       </div>
     </header>
   );

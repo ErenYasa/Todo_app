@@ -1,5 +1,5 @@
 import { TodosContainer } from '../TodosContainer';
-import { ListSearchBar } from '../ListSearchBar';
+import { ListSearchBar } from '../SearchBar';
 
 export function MainBody() {
   return (

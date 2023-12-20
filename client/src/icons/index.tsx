@@ -72,3 +72,39 @@ export function InfoIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function AddIcon(props: IconProps) {
+  return (
+    <svg
+      viewBox="4 4 16 16"
+      className={props.className || ''}
+      width={props.width || '24px'}
+      height={props.height || '24px'}
+      fill={props.color || '#000000'}
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round">
+      <path d="M5 12h14"></path>
+      <path d="M12 5v14"></path>
+    </svg>
+  );
+}
+
+export function SearchIcon(props: IconProps) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width={props.width || '24px'}
+      height={props.height || '24px'}
+      fill="none"
+      stroke={props.color || '#000000'}
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={props.className || ''}>
+      <circle cx={11} cy={11} r={8} />
+      <path d="m21 21-4.3-4.3" />
+    </svg>
+  );
+}

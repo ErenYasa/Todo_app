@@ -1,10 +1,10 @@
+import { Fragment, ReactNode } from 'react';
 import { useAppSelector } from '@store/hooks';
 import { Header } from '@components/Header';
 import { Modal } from '@components/Modal';
-import ConfirmModal from '@components/Modal/Modals/Confirm.modal';
+import { ConfirmModal } from '@components/Modal/Modals/Confirm.modal';
 import { EditModal } from '@components/Modal/Modals/Edit.modal';
 import { ModalNames } from '@/types/global';
-import { ReactNode } from 'react';
 
 type Props = {
   children: ReactNode;
@@ -15,11 +15,9 @@ export function PanelLayout({ children }: Props) {
   const modals = useAppSelector((state) => state.Modal.modals);
 
   return (
-    <>
-      <div className="root-container">
-        <Header />
-        {children}
-      </div>
+    <Fragment>
+      <Header fullWidth />
+      <div className="root-container">{children}</div>
       {modals[ModalNames.CONFIRM] && (
         <Modal type="confirm" name="confirm">
           <ConfirmModal />
@@ -35,6 +33,6 @@ export function PanelLayout({ children }: Props) {
           <EditModal />
         </Modal>
       )}
-    </>
+    </Fragment>
   );
 }

@@ -27,13 +27,13 @@
         height: 3.4rem;
 
         @include sm {
-            width: 4rem;
-            height: 4rem;
+            width: 3.6rem;
+            height: 3.6rem;
         }
     }
 
     &__text {
-        font-size: var(--fs-3xl);
+        font-size: var(--fs-2xl);
         font-weight: 600;
         line-height: var(--lh-tight);
         color: var(--main-color);

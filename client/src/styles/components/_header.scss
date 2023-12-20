@@ -2,15 +2,44 @@
     height: 5.5rem;
     border-bottom: 0.1rem solid var(--c-gray);
 
+    &--fullWidth {
+        .header__container {
+            @include containerFluid();
+        }
+    }
+
+    &:not(.header--fullWidth) {
+        .header__container {
+            @include containerClass("xl");
+        }
+    }
+
     &__container {
-        @include containerClass("xl");
+        position: relative;
         display: flex;
         align-items: center;
         height: 100%;
         padding: 0.5rem 1.5rem;
-    }
 
-    @include sm {
-        height: 6.3rem;
+        &__middle {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+            align-items: center;
+
+            @include sm {
+                display: flex;
+            }
+        }
+
+        .user-dropdown {
+            display: none;
+
+            @include sm {
+                display: flex;
+            }
+        }
     }
 }
