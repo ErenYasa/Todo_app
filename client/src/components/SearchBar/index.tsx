@@ -3,8 +3,10 @@ import { useDebounce } from 'usehooks-ts';
 import { useAppDispatch } from '@/store/hooks';
 import { setFilterStatus, setSearchQuery } from '@/store/slices/app.slice';
 import { FilterStatus } from '@/types/global';
+import { TextInput } from '../Form/Elements/TextInput';
+import { SearchIcon } from '@/icons';
 
-export function ListSearchBar() {
+export function SearchBar() {
   const dispatch = useAppDispatch();
 
   /* States */
@@ -27,14 +29,9 @@ export function ListSearchBar() {
   /*  */
 
   return (
-    <div className="search-todo-bar">
-      <input
-        type="text"
-        className="search-todo-bar__input"
-        placeholder="Search..."
-        value={searchInputVal}
-        onChange={handleSearch}
-      />
+    <div className="search-bar">
+      <SearchIcon width="18" height="18" className='search-bar__icon' />
+      <TextInput placeholder="Search..." _size="small" value={searchInputVal} onChange={handleSearch} />
     </div>
   );
 }

@@ -1,0 +1,24 @@
+.search-bar {
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    width: 450px;
+    height: 5rem;
+    padding: 0.5rem 1rem;
+    background-color: $c-light;
+
+    &__icon {
+        pointer-events: none;
+        position: absolute;
+        left: 1.8rem;
+        margin-top: -0.1rem;
+        stroke: var(--c-gray);
+    }
+
+    .form-control__input {
+        padding-left: 3rem !important;
+        cursor: pointer;
+    }
+}

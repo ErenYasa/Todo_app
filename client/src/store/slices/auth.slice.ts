@@ -4,7 +4,7 @@ import { IAuthState } from '../interfaces/auth.slice.interface';
 import { IUser } from '@/types/global';
 
 const initialState: IAuthState = {
-  isLoggedIn: !!Cookies.get('access_token'),
+  isLoggedIn: !!Cookies.get(`${process.env.APP_NAME}_access_token`),
   user: null,
   access_token: '',
   refresh_token: '',
@@ -31,6 +31,7 @@ export const AuthSlice: Slice<IAuthState> = createSlice({
       });
 
       localStorage.removeItem(`${process.env.APP_NAME}_user`);
+      localStorage.removeItem(`${process.env.APP_NAME}_userId`);
     },
     setIsLoggedIn: (state, { payload }: PayloadAction<boolean>) => {
       state.isLoggedIn = payload;
