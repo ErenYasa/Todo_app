@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { useLazyLogoutQuery } from '@/services/auth';
 import { useOnClickOutside, useReadLocalStorage } from 'usehooks-ts';
 import { IUser } from '@/types/global';
+import classNames from 'classnames';
+import { LogoutIcon, SettingsIcon } from '@/icons';
 
 export function UserDropdown() {
   /* States & Variabels */
@@ -29,18 +31,26 @@ export function UserDropdown() {
   };
   /*  */
 
+  /* Utils */
+  const classes = classNames('user-dropdown', {
+    ['user-dropdown--dropdown-open']: openDropdown,
+  });
+  /*  */
+
   return (
-    <div className="user-dropdown" ref={userDropdownRef}>
+    <div className={classes} ref={userDropdownRef}>
       <button type="button" className="user-dropdown__btn" onClick={handleDropdownClick}>
         {`${user.firstName.charAt(0)}${user.lastName.charAt(0)}`}
       </button>
       {openDropdown && (
         <div className="user-dropdown__dropdown">
           <Link to="/" className="user-dropdown__dropdown__btn">
-            Settings
+            <SettingsIcon width="17" height="17" />
+            <p className="dropdown__btn__text">Settings</p>
           </Link>
           <button type="button" className="user-dropdown__dropdown__btn" onClick={handleLogout}>
-            Logout
+            <LogoutIcon width="15" height="15" />
+            <p className="dropdown__btn__text">Logout</p>
           </button>
         </div>
       )}

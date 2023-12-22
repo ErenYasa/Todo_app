@@ -5,6 +5,7 @@ import { Modal } from '@components/Modal';
 import { ConfirmModal } from '@components/Modal/Modals/Confirm.modal';
 import { EditModal } from '@components/Modal/Modals/Edit.modal';
 import { ModalNames } from '@/types/global';
+import { MobileMenu } from '@/components/MobileMenu';
 
 type Props = {
   children: ReactNode;
@@ -18,6 +19,11 @@ export function PanelLayout({ children }: Props) {
     <Fragment>
       <Header fullWidth />
       <div className="root-container">{children}</div>
+      <MobileMenu />
+
+      {/**
+       * MODALS
+       */}
       {modals[ModalNames.CONFIRM] && (
         <Modal type="confirm" name="confirm">
           <ConfirmModal />
@@ -33,6 +39,7 @@ export function PanelLayout({ children }: Props) {
           <EditModal />
         </Modal>
       )}
+      {/*  */}
     </Fragment>
   );
 }

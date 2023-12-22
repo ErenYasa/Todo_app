@@ -16,9 +16,11 @@ export function Header({ fullWidth }: HeaderProps) {
   const userInfo = useReadLocalStorage(`${process.env.APP_NAME}_user`) as IUser;
   /*  */
 
+  /* UTILS */
   const classes = classNames('header', {
     ['header--fullWidth']: fullWidth,
   });
+  /*  */
 
   return (
     <header className={classes}>
@@ -33,7 +35,6 @@ export function Header({ fullWidth }: HeaderProps) {
               </button>
             </div>
             <UserDropdown />
-            {/* <button onClick={handleLogout}>Logout</button> */}
           </Fragment>
         )}
       </div>
