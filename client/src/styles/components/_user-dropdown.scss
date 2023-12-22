@@ -1,8 +1,17 @@
 .user-dropdown {
+    @mixin btn-hover {
+        outline-color: color-mix(in srgb, var(--btn-color) 30%, white 4%);
+    }
+
     position: relative;
     margin-left: auto;
 
+    &--dropdown-open > &__btn {
+        @include btn-hover;
+    }
+
     &__btn {
+        --btn-color: var(--c-secondary);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -14,10 +23,13 @@
         font-size: var(--fs-sm);
         color: var(--c-light);
         border-radius: var(--radius-full);
-        background-color: var(--c-secondary);
+        background-color: var(--btn-color);
+        outline: 0.45rem solid transparent;
+        transition: outline 0.2s ease-in;
 
         &:hover {
-            box-shadow: var(--shadow);
+            @include btn-hover;
+            transition: outline-color 0.2s ease-out;
         }
     }
 
@@ -25,21 +37,31 @@
         position: absolute;
         top: 4rem;
         right: 0;
-        min-width: 15rem;
+        min-width: 16rem;
+        max-width: 21rem;
         padding-block: 0.5rem;
         border-radius: var(--radius-sm);
         background-color: var(--c-light);
         box-shadow: var(--shadow);
 
         &__btn {
-            display: block;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             width: 100%;
             padding: 1.2rem 1.5rem;
-            text-align: left;
-            font-size: var(--fs-xs);
 
             &:hover {
                 background-color: color-mix(in srgb, var(--c-gray) 12%, white 4%);
+            }
+
+            .dropdown__btn__text {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                text-align: left;
+                font-size: var(--fs-xs);
             }
         }
     }
