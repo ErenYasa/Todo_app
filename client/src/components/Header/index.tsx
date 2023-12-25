@@ -7,6 +7,7 @@ import { Fragment } from 'react';
 import { SearchBar } from '../SearchBar';
 import { AddIcon } from '@/icons';
 import { UserDropdown } from '../UserDropdown';
+import { Button } from '../Button';
 
 export function Header({ fullWidth }: HeaderProps) {
   /* STATES & VARIABLES */
@@ -28,11 +29,12 @@ export function Header({ fullWidth }: HeaderProps) {
         <AppLogo textVisible="desktop" />
         {userInfo && (
           <Fragment>
-            <div className='header__container__middle'>
+            <div className="header__container__middle">
               <SearchBar />
-              <button>
-                <AddIcon />
-              </button>
+              <Button variant="default" kind="primary" size="small" className='header__create-todo-btn'>
+                <AddIcon width="14" height="14" />
+                create
+              </Button>
             </div>
             <UserDropdown />
           </Fragment>
