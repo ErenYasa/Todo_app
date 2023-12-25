@@ -28,9 +28,18 @@
             transform: translate(-50%, -50%);
             display: none;
             align-items: center;
+            justify-content: center;
+            width: 100%;
 
             @include sm {
                 display: flex;
+            }
+
+            .header__create-todo-btn {
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+                box-shadow: none;
             }
         }
 

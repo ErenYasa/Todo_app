@@ -7,7 +7,7 @@ export function Button({ children, className, variant, kind, size, fullWidth, lo
   const sizeHandler = size ? `btn--${size}` : '';
   const fullWidthHandler = fullWidth ? 'btn--full-width' : '';
 
-  const classes = classNames('btn', className, variantHandler, kindHandler, sizeHandler, fullWidthHandler, {
+  const classes = classNames('btn', variantHandler, kindHandler, sizeHandler, fullWidthHandler, className, {
     loading,
   });
 

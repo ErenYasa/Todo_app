@@ -1,13 +1,19 @@
 .search-bar {
-    overflow: hidden;
     position: relative;
     display: flex;
     align-items: center;
-    white-space: nowrap;
-    width: 450px;
-    height: 5rem;
+    width: 100%;
+    max-width: 20rem;
     padding: 0.5rem 1rem;
     background-color: $c-light;
+
+    @include md {
+        max-width: 35rem;
+    }
+
+    @include lg {
+        max-width: 45rem;
+    }
 
     &__icon {
         pointer-events: none;
