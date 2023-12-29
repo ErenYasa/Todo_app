@@ -1,7 +1,8 @@
-import { AddIcon, MenuIcon, SearchIcon } from '@/icons';
 import { createPortal } from 'react-dom';
+import { AddIcon, MenuIcon, SearchIcon } from '@/icons';
+import { MobileMenuProps } from './defs';
 
-export function MobileMenu() {
+export function MobileMenu({ mobileSidebarToggle }: MobileMenuProps) {
   return createPortal(
     <div className="mobile-menu">
       <button type="button" className="mobile-menu__items">
@@ -12,7 +13,7 @@ export function MobileMenu() {
         <AddIcon className="create-todo-btn__icon" />
         <p className="mobile-menu__items__title">Create</p>
       </button>
-      <button type="button" className="mobile-menu__items">
+      <button type="button" className="mobile-menu__items" onClick={mobileSidebarToggle}>
         <MenuIcon />
         <p className="mobile-menu__items__title">Menu</p>
       </button>

@@ -140,8 +140,9 @@ textarea {
     border: none;
 } */
 
-a {
-    color: $c-dark;
+a,
+button {
+    color: var(--c-dark);
 }
 
 [hidden] {
