@@ -1,4 +1,4 @@
-import { Fragment, ReactNode } from 'react';
+import { Fragment, useState } from 'react';
 import { useAppSelector } from '@store/hooks';
 import { useMediaQuery } from 'usehooks-ts';
 import { Header } from '@components/Header';
@@ -7,23 +7,35 @@ import { ConfirmModal } from '@components/Modal/Modals/Confirm.modal';
 import { EditModal } from '@components/Modal/Modals/Edit.modal';
 import { MobileMenu } from '@/components/MobileMenu';
 import { MediaBreakpoints, ModalNames } from '@/types/global';
+import { MobileSidebar } from '@/components/MobileSidebar';
+import { PanelLayoutProps } from './defs';
 
-type Props = {
-  children: ReactNode;
-  customClass?: string;
-};
+export function PanelLayout({ children }: PanelLayoutProps) {
+  /* STATES & VARIABLES */
+  const [openMobileSidebar, setOpenMobileSidebar] = useState(false);
+  /*  */
 
-export function PanelLayout({ children }: Props) {
   /* Hooks */
   const modals = useAppSelector((state) => state.Modal.modals);
   const isMobile = useMediaQuery(`(max-width: ${MediaBreakpoints.SM})`);
+  /*  */
+
+  /* EFFECTS & EVENTS */
+  const handleMobileSidebarClick = () => {
+    setOpenMobileSidebar(!openMobileSidebar);
+  };
   /*  */
 
   return (
     <Fragment>
       <Header fullWidth />
       <div className="root-container">{children}</div>
-      {isMobile && <MobileMenu />}
+      {isMobile && (
+        <Fragment>
+          <MobileMenu mobileSidebarToggle={handleMobileSidebarClick} />
+          {openMobileSidebar && <MobileSidebar open={openMobileSidebar} onClose={handleMobileSidebarClick} />}
+        </Fragment>
+      )}
 
       {/**
        * MODALS

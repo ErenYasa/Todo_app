@@ -1,12 +1,7 @@
-import { DotsLoading } from "@/icons";
+import { LoaderProps } from './defs';
+import { DotsLoading } from '@/icons';
 
-
-type Props = {
-  width?: string;
-  height?: string;
-};
-
-export function DotsLoader({ width, height }: Props) {
+export function DotsLoader({ width, height }: LoaderProps) {
   return (
     <i>
       <DotsLoading width={width} height={height} />

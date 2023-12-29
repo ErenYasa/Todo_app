@@ -99,9 +99,6 @@ export function SearchIcon(props: IconProps) {
       height={props.height || '24px'}
       fill="none"
       stroke={props.color || '#000000'}
-      strokeWidth={2}
-      strokeLinecap="round"
-      strokeLinejoin="round"
       className={props.className || ''}>
       <circle cx={11} cy={11} r={8} />
       <path d="m21 21-4.3-4.3" />
@@ -117,9 +114,6 @@ export function MenuIcon(props: IconProps) {
       height={props.height || '24px'}
       fill="none"
       stroke={props.color || '#000000'}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
       className={props.className || ''}>
       <line x1="4" x2="20" y1="12" y2="12"></line>
       <line x1="4" x2="20" y1="6" y2="6"></line>
@@ -136,9 +130,6 @@ export function CloseIcon(props: IconProps) {
       height={props.height || '24px'}
       fill="none"
       stroke={props.color || '#000000'}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
       className={props.className || ''}>
       <path d="M18 6 6 18"></path>
       <path d="m6 6 12 12"></path>
@@ -154,9 +145,6 @@ export function SettingsIcon(props: IconProps) {
       height={props.height || '24px'}
       fill="none"
       stroke={props.color || '#000000'}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
       className={props.className || ''}>
       <path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path>
       <circle cx="12" cy="12" r="3"></circle>
@@ -172,9 +160,6 @@ export function LogoutIcon(props: IconProps) {
       height={props.height || '24px'}
       fill="none"
       stroke={props.color || '#000000'}
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
       className={props.className || ''}>
       <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
       <polyline points="16 17 21 12 16 7"></polyline>
