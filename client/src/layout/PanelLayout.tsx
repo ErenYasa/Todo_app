@@ -29,7 +29,7 @@ export function PanelLayout({ children }: PanelLayoutProps) {
   return (
     <Fragment>
       <Header fullWidth />
-      <div className="root-container">{children}</div>
+      <div className="dashboard-page">{children}</div>
       {isMobile && (
         <Fragment>
           <MobileMenu mobileSidebarToggle={handleMobileSidebarClick} />

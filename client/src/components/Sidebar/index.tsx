@@ -1,0 +1,82 @@
+import classNames from 'classnames';
+import { useLocalStorage } from 'usehooks-ts';
+import { AddIcon as CreateIcon, CollapseIcon, MoreIcon } from '@/icons';
+import { NavLink } from 'react-router-dom';
+import DropdownList from '../DropdownList';
+import { Fragment } from 'react';
+import { SIDEBAR_ITEMS } from '@/constant/sidebarItems';
+
+export function Sidebar() {
+  /* STATES */
+  const [isCollapseSidebar, setSidebarCollapse] = useLocalStorage('isSidebarCollapse', false);
+  /*  */
+
+  /* EFFECT & EVENTS */
+  const handleToggleSidebar = (whoIsTrigger: string) => {
+    switch (true) {
+      case isCollapseSidebar && whoIsTrigger === 'container':
+        setSidebarCollapse(false);
+        break;
+      case whoIsTrigger === 'toggleBtn':
+        setSidebarCollapse((prevValue: boolean) => !prevValue);
+        break;
+    }
+  };
+  /*  */
+
+  /* MISC */
+  const classes = classNames('sidebar', {
+    'sidebar--collapse': isCollapseSidebar,
+  });
+  /*  */
+
+  return (
+    <aside className={classes}>
+      <div className="sidebar__container" onClick={() => handleToggleSidebar('container')}>
+        {SIDEBAR_ITEMS.map((item) => (
+          <Fragment key={item.id}>
+            {item.href && (
+              <NavLink
+                to={item.href}
+                className={({ isActive }) => classNames('sidebar__btn', { ['sidebar__btn--active']: isActive })}>
+                <i>{item.icon}</i>
+                <p className="sidebar__btn__text">{item.text}</p>
+              </NavLink>
+            )}
+            {/* {item.children && ()}
+            {!item.children && !item.href && ()} */}
+          </Fragment>
+        ))}
+        <DropdownList
+          title="Workspaces"
+          className="dropdown-list--sidebar"
+          alwaysOpen
+          extendDropdownHeader={
+            <button type="button" className="dropdown-list--sidebar__create-btn" title="Create a workspace">
+              <CreateIcon width="16" height="16" />
+            </button>
+          }>
+          <div className="dropdown-list--sidebar__frame">
+            <NavLink
+              to="#"
+              type="button"
+              className="dropdown-list--sidebar__item"
+              title="Workspace"
+              style={{ '--btn-color': '#000' } as React.CSSProperties}>
+              <div className="sidebar__item__content">
+                <span className="sidebar__item__label"></span>
+                <p className="sidebar__item__text">Workspace 1</p>
+              </div>
+              <button type="button" className="sidebar__item__more-btn">
+                <MoreIcon width="18" height="18" />
+              </button>
+            </NavLink>
+          </div>
+        </DropdownList>
+      </div>
+      <button type="button" className="sidebar__toggle-btn" onClick={() => handleToggleSidebar('toggleBtn')}>
+        <CollapseIcon className="toggle-btn__icon" width="16" height="16" />
+      </button>
+    </aside>
+  );
+}
