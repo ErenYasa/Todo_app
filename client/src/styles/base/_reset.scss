@@ -156,3 +156,12 @@ label {
 svg {
     flex: 0 0 auto;
 }
+
+summary {
+    list-style: none;
+    user-select: none;
+
+    &::-webkit-details-marker {
+        display: none;
+    }
+}

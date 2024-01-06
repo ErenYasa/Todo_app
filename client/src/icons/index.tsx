@@ -167,3 +167,72 @@ export function LogoutIcon(props: IconProps) {
     </svg>
   );
 }
+
+export function CollapseIcon(props: IconProps) {
+  return (
+    <svg
+      viewBox="8 5 8 14"
+      width={props.width || '24px'}
+      height={props.height || '24px'}
+      fill="none"
+      stroke={props.color || '#000000'}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={props.className || ''}>
+      <path d="m9 18 6-6-6-6"></path>
+    </svg>
+  );
+}
+
+export function HomeIcon(props: IconProps) {
+  return (
+    <svg
+      viewBox="2 1 20 22"
+      width={props.width || '24px'}
+      height={props.height || '24px'}
+      fill="none"
+      stroke={props.color || '#000000'}
+      strokeWidth="1"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={props.className || ''}>
+      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+      <polyline points="9 22 9 12 15 12 15 22"></polyline>
+    </svg>
+  );
+}
+
+export function ChevronDownIcon(props: IconProps) {
+  return (
+    <svg
+      viewBox="5 8 14 8"
+      width={props.width || '24px'}
+      height={props.height || '24px'}
+      fill="none"
+      stroke={props.color || '#000000'}
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={props.className || ''}>
+      <path d="m6 9 6 6 6-6"></path>
+    </svg>
+  );
+}
+
+export function MoreIcon(props: IconProps) {
+  return (
+    <svg
+      viewBox="3 10 18 4"
+      width={props.width || '24px'}
+      height={props.height || '24px'}
+      fill="none"
+      stroke={props.color || 'currentColor'}
+      strokeWidth="2"
+      className={props.className || ''}>
+      <circle cx="12" cy="12" r="1"></circle>
+      <circle cx="19" cy="12" r="1"></circle>
+      <circle cx="5" cy="12" r="1"></circle>
+    </svg>
+  );
+}

@@ -1,0 +1,90 @@
+.sidebar {
+    @mixin btn-hover {
+        outline-color: color-mix(in srgb, var(--btn-color) 50%, black 10%);
+    }
+
+    position: relative;
+    display: flex;
+    flex: 0 0 auto;
+    width: 30rem;
+    height: calc(100vh - 5.5rem);
+    border-right: 0.3rem solid var(--c-gray-light);
+    background-color: var(--c-main-bg);
+    transition: width 0.2s ease-in-out;
+
+    &--collapse {
+        width: 3rem;
+        cursor: pointer;
+
+        .sidebar__container {
+            opacity: 0;
+
+            &:hover + .sidebar__toggle-btn {
+                @include btn-hover;
+            }
+        }
+
+        .sidebar__toggle-btn {
+            .toggle-btn__icon {
+                transform: rotate(0);
+            }
+        }
+    }
+
+    &__container {
+        overflow: hidden;
+        width: 100%;
+        padding: 3rem 2.5rem 1.5rem 0;
+        transition: opacity 0.2s ease-in-out;
+
+        .sidebar__btn {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1.1rem;
+            padding: 1rem;
+            padding-left: 2.5rem;
+            transition: background-color 0.2s ease-in-out;
+
+            &:hover,
+            &--active {
+                border-top-right-radius: var(--radius-md);
+                border-bottom-right-radius: var(--radius-md);
+                background-color: var(--c-gray-light);
+            }
+
+            &__text {
+                @include lineclamp;
+
+                line-height: var(--lh-tight);
+                font-size: var(--fs-sm);
+            }
+        }
+    }
+
+    &__toggle-btn {
+        --btn-color: var(--c-gray-light);
+
+        position: absolute;
+        top: 2.5rem;
+        right: -1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 3rem;
+        height: 3rem;
+        border-radius: var(--radius-full);
+        background-color: var(--btn-color);
+        outline: 0.45rem solid transparent;
+        transition: outline 0.2s ease-in;
+
+        &:hover {
+            @include btn-hover;
+        }
+
+        .toggle-btn__icon {
+            transform: rotate(180deg);
+            transition: transform 0.2s ease-in-out;
+        }
+    }
+}
