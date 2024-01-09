@@ -26,7 +26,11 @@
         position: relative;
         margin-top: 2.5rem;
         padding: 1rem;
-        padding-left: 2.5rem;
+        padding-left: 1.5rem;
+
+        @include sm {
+            padding-left: 2.5rem;
+        }
 
         &[open] {
             summary {
@@ -54,10 +58,14 @@
             overflow-y: auto;
             display: flex;
             flex-direction: column;
-            gap: 1.5rem;
+            gap: 1rem;
             max-height: 12.9rem;
             padding-right: 0.8rem;
             font-size: var(--fs-sm);
+
+            @include sm {
+                gap: 1.5rem;
+            }
 
             &::-webkit-scrollbar-track {
                 border-radius: 10px;
