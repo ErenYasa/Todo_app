@@ -23,6 +23,7 @@
     }
 
     &--sidebar {
+        position: relative;
         margin-top: 2.5rem;
         padding: 1rem;
         padding-left: 2.5rem;
@@ -106,7 +107,7 @@
             }
 
             @include lg {
-                &:is(:hover, &--active) .sidebar__item__more-btn {
+                &:is(:hover, &--active) .workspace-options-dropdown__btn {
                     opacity: 0.65;
                     visibility: visible;
                 }
@@ -130,22 +131,6 @@
 
                 .sidebar__item__text {
                     @include lineclamp(1);
-                }
-            }
-
-            .sidebar__item__more-btn {
-                opacity: 1;
-                visibility: visible;
-                display: flex;
-
-                @include lg {
-                    opacity: 0;
-                    visibility: hidden;
-                    transition: opacity 0.2s ease-in-out;
-
-                    &:hover {
-                        opacity: 1;
-                    }
                 }
             }
         }

@@ -1,10 +1,11 @@
-import classNames from 'classnames';
-import { useLocalStorage } from 'usehooks-ts';
-import { AddIcon as CreateIcon, CollapseIcon, MoreIcon } from '@/icons';
-import { NavLink } from 'react-router-dom';
-import DropdownList from '../DropdownList';
 import { Fragment } from 'react';
+import { useLocalStorage } from 'usehooks-ts';
+import classNames from 'classnames';
+import { NavLink } from 'react-router-dom';
+import { AddIcon as CreateIcon, CollapseIcon } from '@/icons';
+import DropdownList from '../DropdownList';
 import { SIDEBAR_ITEMS } from '@/constant/sidebarItems';
+import { WorkspaceOptionsDropdown } from '../WorkspaceOptionsDropdown';
 
 export function Sidebar() {
   /* STATES */
@@ -67,9 +68,31 @@ export function Sidebar() {
                 <span className="sidebar__item__label"></span>
                 <p className="sidebar__item__text">Workspace 1</p>
               </div>
-              <button type="button" className="sidebar__item__more-btn">
-                <MoreIcon width="18" height="18" />
-              </button>
+              <WorkspaceOptionsDropdown />
+            </NavLink>
+            <NavLink
+              to="#"
+              type="button"
+              className="dropdown-list--sidebar__item"
+              title="Workspace"
+              style={{ '--btn-color': '#000' } as React.CSSProperties}>
+              <div className="sidebar__item__content">
+                <span className="sidebar__item__label"></span>
+                <p className="sidebar__item__text">Workspace 1</p>
+              </div>
+              <WorkspaceOptionsDropdown />
+            </NavLink>
+            <NavLink
+              to="#"
+              type="button"
+              className="dropdown-list--sidebar__item"
+              title="Workspace"
+              style={{ '--btn-color': '#000' } as React.CSSProperties}>
+              <div className="sidebar__item__content">
+                <span className="sidebar__item__label"></span>
+                <p className="sidebar__item__text">Workspace 1</p>
+              </div>
+              <WorkspaceOptionsDropdown />
             </NavLink>
           </div>
         </DropdownList>
