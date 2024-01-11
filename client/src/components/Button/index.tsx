@@ -1,4 +1,4 @@
-import { ButtonProps } from './interfaces/buttons.interface';
+import { ButtonProps } from './defs';
 import classNames from 'classnames';
 
 export function Button({ children, className, variant, kind, size, fullWidth, loading, ...rest }: ButtonProps) {

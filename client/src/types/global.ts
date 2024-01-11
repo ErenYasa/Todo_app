@@ -46,6 +46,7 @@ export interface IUser {
  */
 
 export enum ModalNames {
+  CREATE_WORKSPACE = 'createWorkspace',
   CREATE_TODO = 'createTodo',
   EDIT_TODO = 'editTodo',
   CONFIRM = 'confirm',
@@ -84,11 +85,11 @@ export enum Size {
 }
 
 export enum MediaBreakpoints {
-  SM = "576px",
-  MD = "768px",
-  LG = "1024px",
-  XL = "1280px",
-  XXL = "1536px",
+  SM = '576px',
+  MD = '768px',
+  LG = '1024px',
+  XL = '1280px',
+  XXL = '1536px',
 }
 
 /*  */
