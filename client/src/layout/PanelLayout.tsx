@@ -3,12 +3,13 @@ import { useAppSelector } from '@store/hooks';
 import { useMediaQuery } from 'usehooks-ts';
 import { Header } from '@components/Header';
 import { Modal } from '@components/Modal';
-import { ConfirmModal } from '@components/Modal/Modals/Confirm.modal';
-import { EditModal } from '@components/Modal/Modals/Edit.modal';
+import { ConfirmModal } from '@/components/Modal/Modals/ConfirmModal';
+import { EditModal } from '@/components/Modal/Modals/EditTodoModal';
 import { MobileMenu } from '@/components/MobileMenu';
 import { MediaBreakpoints, ModalNames } from '@/types/global';
 import { MobileSidebar } from '@/components/MobileSidebar';
 import { PanelLayoutProps } from './defs';
+import CreateWorkspaceModal from '@/components/Modal/Modals/CreateWorkspaceModal';
 
 export function PanelLayout({ children }: PanelLayoutProps) {
   /* STATES & VARIABLES */
@@ -41,7 +42,7 @@ export function PanelLayout({ children }: PanelLayoutProps) {
        * MODALS
        */}
       {modals[ModalNames.CONFIRM] && (
-        <Modal type="confirm" name="confirm">
+        <Modal type="confirm" name="confirm" size="small">
           <ConfirmModal />
         </Modal>
       )}
@@ -53,6 +54,11 @@ export function PanelLayout({ children }: PanelLayoutProps) {
       {modals[ModalNames.CREATE_TODO] && (
         <Modal className="modal--edit-todo" name="editTodo">
           <EditModal />
+        </Modal>
+      )}
+      {modals[ModalNames.CREATE_WORKSPACE] && (
+        <Modal className="modal--create-workspace" size="small" name="createWorkspace" title="Create Workspace">
+          <CreateWorkspaceModal />
         </Modal>
       )}
       {/*  */}

@@ -9,8 +9,15 @@ import { SIDEBAR_ITEMS } from '@/constant/sidebarItems';
 import AppLogo from '../AppLogo';
 import DropdownList from '../DropdownList';
 import { WorkspaceOptionsDropdown } from '../WorkspaceOptionsDropdown';
+import { ModalNames } from '@/types/global';
+import { useAppDispatch } from '@/store/hooks';
+import { openModal } from '@/store/slices/modal.slice';
 
 export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
+  /* HOOKS */
+  const dispatch = useAppDispatch();
+  /*  */
+
   /* UTILS */
   const classes = classNames('mobile-sidebar', {
     ['mobile-sidebar--open']: open,
@@ -24,6 +31,11 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
   /* Effects & Events */
   const handleLogout = () => {
     logout('');
+  };
+
+  const handleOpenCreateWorkspaceClick = () => {
+    console.log('first');
+    dispatch(openModal({ name: ModalNames.CREATE_WORKSPACE }));
   };
   /*  */
 
@@ -55,7 +67,11 @@ export function MobileSidebar({ open, onClose }: MobileSidebarProps) {
               className="dropdown-list--sidebar"
               alwaysOpen
               extendDropdownHeader={
-                <button type="button" className="dropdown-list--sidebar__create-btn" title="Create a workspace">
+                <button
+                  type="button"
+                  className="dropdown-list--sidebar__create-btn"
+                  title="Create a workspace"
+                  onClick={handleOpenCreateWorkspaceClick}>
                   <CreateIcon width="16" height="16" />
                 </button>
               }>

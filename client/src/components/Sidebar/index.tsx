@@ -6,9 +6,13 @@ import { AddIcon as CreateIcon, CollapseIcon } from '@/icons';
 import DropdownList from '../DropdownList';
 import { SIDEBAR_ITEMS } from '@/constant/sidebarItems';
 import { WorkspaceOptionsDropdown } from '../WorkspaceOptionsDropdown';
+import { useAppDispatch } from '@/store/hooks';
+import { openModal } from '@/store/slices/modal.slice';
+import { ModalNames } from '@/types/global';
 
 export function Sidebar() {
-  /* STATES */
+  /* STATES & VARIABLES */
+  const dispatch = useAppDispatch();
   const [isCollapseSidebar, setSidebarCollapse] = useLocalStorage('isSidebarCollapse', false);
   /*  */
 
@@ -22,6 +26,10 @@ export function Sidebar() {
         setSidebarCollapse((prevValue: boolean) => !prevValue);
         break;
     }
+  };
+
+  const handleOpenCreateWorkspaceClick = () => {
+    dispatch(openModal({ name: ModalNames.CREATE_WORKSPACE }));
   };
   /*  */
 
@@ -53,7 +61,11 @@ export function Sidebar() {
           className="dropdown-list--sidebar"
           alwaysOpen
           extendDropdownHeader={
-            <button type="button" className="dropdown-list--sidebar__create-btn" title="Create a workspace">
+            <button
+              type="button"
+              className="dropdown-list--sidebar__create-btn"
+              title="Create a workspace"
+              onClick={handleOpenCreateWorkspaceClick}>
               <CreateIcon width="16" height="16" />
             </button>
           }>
