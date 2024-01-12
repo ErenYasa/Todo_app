@@ -1,0 +1,153 @@
+.selectbox {
+    user-select: none;
+    position: relative;
+    width: 100%;
+
+    &.selectbox--open {
+        .selectbox__trigger__icon {
+            transform: rotate(180deg);
+        }
+    }
+
+    &.selectbox--ghost {
+        .selectbox__trigger {
+            background: transparent;
+            border-color: transparent;
+        }
+    }
+
+    &.selectbox--primary {
+        --selectbox-color: var(--c-primary);
+    }
+
+    &.selectbox--secondary {
+        --selectbox-color: var(--c-secondary);
+    }
+
+    &.selectbox--danger {
+        --selectbox-color: var(--c-danger);
+    }
+
+    &.selectbox--success {
+        --selectbox-color: var(--c-success);
+    }
+
+    &.selectbox--no-border {
+        .selectbox__trigger {
+            border-color: transparent;
+        }
+    }
+
+    &.selectbox--small {
+        .selectbox__trigger,
+        .selectbox__item {
+            height: 3.2rem;
+            padding: 1rem;
+        }
+
+        .selectbox__list {
+            max-height: calc(var(--item-count) * 3.2rem);
+        }
+    }
+
+    &.selectbox--large {
+        .selectbox__trigger,
+        .selectbox__item {
+            height: 5.5rem;
+            padding: 1.5rem;
+            font-size: var(--fs-lg);
+        }
+
+        .selectbox__list {
+            max-height: calc(var(--item-count) * 5.5rem);
+        }
+    }
+
+    &.selectbox--disabled,
+    &[disabled],
+    &:disabled {
+        z-index: -1;
+
+        .selectbox__trigger {
+            cursor: not-allowed;
+            border: var(--c-disabled-input-color);
+            background-color: var(--c-disabled-input-color);
+            color: rgba(0, 0, 0, 0.25);
+
+            &__icon {
+                stroke: rgba(0, 0, 0, 0.25);
+            }
+        }
+    }
+
+    &__trigger {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        appearance: none;
+        flex-shrink: 1;
+        width: 100%;
+        height: 4.2rem;
+        padding: 1.2rem;
+        font-size: var(--fs-sm);
+        border: 0.1rem solid;
+        border-color: var(--selectbox-color, var(--c-gray));
+        border-radius: var(--rounded-btn);
+        background-color: var(--c-light);
+
+        .form-control:not(.form-control--error) &:hover {
+            border-color: color-mix(in srgb, var(--selectbox-color, var(--c-gray)) 60%, white 4%);
+        }
+
+        .form-control:not(.form-control--error) &:focus,
+        .form-control:not(.form-control--error) &:focus-within,
+        .selectbox:is(.selectbox--open) & {
+            border-color: color-mix(in srgb, var(--selectbox-color, var(--c-gray)) 60%, white 4%);
+            outline: 0.2rem solid;
+            outline-offset: 0.2rem;
+            outline-color: color-mix(in srgb, var(--selectbox-color, var(--c-gray)) 60%, white 4%);
+        }
+    }
+
+    &__list {
+        overflow-y: auto;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        z-index: 2;
+        width: 100%;
+        max-height: calc(var(--item-count) * 4.2rem);
+        margin-top: 0.7rem;
+        border: 0.1rem solid;
+        border-color: var(--selectbox-color, var(--c-gray));
+        border-radius: var(--rounded-btn);
+        background-color: var(--c-light);
+        box-shadow: var(--bs-sm);
+        animation: fadeInTopModal 0.3s ease forwards;
+    }
+
+    &__item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 4.2rem;
+        padding: 1.2rem;
+        font-size: var(--fs-sm);
+        cursor: pointer;
+
+        &:not(.selectbox__item--disabled):hover {
+            background-color: color-mix(in srgb, var(--selectbox-color, var(--c-gray)) 10%, white 4%);
+        }
+
+        &--selected {
+            background-color: color-mix(in srgb, var(--selectbox-color, var(--c-gray)) 10%, white 4%);
+        }
+
+        &--disabled {
+            pointer-events: none;
+            cursor: not-allowed;
+            background-color: var(--c-disabled-input-color);
+            color: rgba(0, 0, 0, 0.25);
+        }
+    }
+}
